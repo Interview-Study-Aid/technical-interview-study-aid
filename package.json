@@ -1,0 +1,20 @@
+{
+  "name": "technical-interview-study-aid",
+  "version": "1.0.0",
+  "description": "A full-stack application designed to help developers practice and review for technical interviews.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Interview-Study-Aid/technical-interview-study-aid.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Interview-Study-Aid/technical-interview-study-aid/issues"
+  },
+  "homepage": "https://github.com/Interview-Study-Aid/technical-interview-study-aid#readme"
+}
