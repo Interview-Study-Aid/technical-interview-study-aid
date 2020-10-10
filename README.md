@@ -14,6 +14,10 @@ Technical interviews are an important (and unavoidable!) part of the process of 
 
 ## Development
 
+### [Software Requirements](./project-info/requirements.html)
+
+### [Conflict/Communication Plans, Workflow, & Git Process](./project-info/communication-conflict-plan.html)
+
 ### User Stories
 
 **1. Landing Page**
