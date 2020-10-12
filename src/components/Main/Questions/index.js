@@ -3,14 +3,39 @@
 // Should render individual questions filtered based on the category chosen
 //    Each question should be clickable/selectable to open a details view modal (https://react-bootstrap.github.io/components/modal/)
 
-import React from 'react';
+import React, { useEffect } from 'react';
+import { connect } from 'react-redux';
 
-const Question = () => {
+function parseQuestion(data){
+  console.log('Data:', data);
+  let target = data.questionAnswer;
+  let parsedData = JSON.parse(target);
+  return parsedData;
+}
+
+// let parsedData = JSON.parse(response.data[0].questionAnswer);
+    // console.log('Parsed Question:', parsedData.question);
+
+const Questions = ({ questions }) => {
+  console.log('Test:', questions);
   return (
     <>
-      <h2>Question Component</h2>
+      <h2>Questions Component</h2>
+      <ul>
+        {questions.map(eachQuestion => {
+          return (
+          <li key={eachQuestion.id} onClick={() => console.log('Clicked this Question:', eachQuestion)}>{eachQuestion.questionAnswer}</li>
+          )
+        })}
+      </ul>
     </>
   );
 };
 
-export default Question;
+const mapStateToProps = state => {
+  return {
+    questions: state.questions.questions,
+  }
+}
+
+export default connect(mapStateToProps)(Questions);

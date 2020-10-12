@@ -9,19 +9,21 @@ import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { getCategories, selectCategory } from '../../../store/categories';
 
-const Categories = ({ getCategories, selectCategory, categories }) => {
+const Categories = ({ getCategories, selectCategory, categories, active }) => {
   useEffect(() => {
     getCategories();
   }, [getCategories]);
+
+  // console.log('ACTIVE CATEGORY: ', active);
 
   return (
     <>
       <h2>Categories Component</h2>
       <ul>
-        {categories.map(each => {
+        {categories.map(eachCategory => {
           return (
-            <li key={each} onClick={() => console.log('clicked!')}>
-              {each}
+            <li key={eachCategory} onClick={() => selectCategory(eachCategory)}>
+              {eachCategory}
             </li>
           );
         })}
@@ -33,6 +35,7 @@ const Categories = ({ getCategories, selectCategory, categories }) => {
 const mapStateToProps = state => {
   return {
     categories: state.categories.categories,
+    active: state.categories.activeCategory,
   };
 };
 
