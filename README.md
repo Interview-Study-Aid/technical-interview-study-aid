@@ -1,76 +1,150 @@
 # Technical Interview Study Aid
 
-A full-stack application designed to help developers practice and review for technical interviews.
-
-## Authors:
-
-- Jennifer Chinzi
-- Kateryna Shydlovska
-- Alex Whan
-
 ## Version: 0.0.1
 
 ## Overview
 
-### Project Proposal
+Technical interviews are an important (and unavoidable!) part of the process of entering the tech field. This full-stack application makes the preparation process as painless as possible for developers by providing a wealth of resources, all in one place.
 
-**Project Name**
+## Authors:
+
+- [Jennifer Chinzi](https://github.com/jchinzi)
+- [Kateryna Shydlovska](https://github.com/KaterynaShydlovska)
+- [Alex Whan](https://github.com/alex-whan)
 
 ## Development
 
-**Project Short Description**
+### [Software Requirements](./project-info/requirements.md)
+
+### [Conflict/Communication Plans, Workflow, & Git Process](./project-info/communication-conflict-plan.md)
 
 ### User Stories
 
+**1. Landing Page**
+
+As a user, I want to be able to see all available categories so that I can understand what information is available.
+
+- Feature Tasks
+
+  - Landing page should display all available categories
+  - Each category should be clickable
+  - No specific questions will be visible on landing page
+
+- Acceptance Tests
+
+  - Login should be available but not required to view categories
+  - Multiple categories should be displayed on the navigation bar
+  - No questions should be visible until a category has been selected
+
+**2. Category View**
+
+As a user, I want to be able to see all questions associated with the selected category so that I can choose a specific question to study in more depth.
+
+- Feature Tasks
+
+  - User can choose a category from a persistent navigation menu
+  - Show only those questions associated with chosen category
+  - Categories for both languages and topics available
+
+- Acceptance Tests
+
+  - The categories displayed on the nav bar should persist when a category is selected
+  - The selected category should be visually indicated
+  - Questions associated with the selected category should render in the body of the page
+  - No answers/solutions/resources should be visible when a category is initially selected
+
+**3. Answers**
+
+As a user, I want to be able to view answers or resources related to the question that I'm viewing so that I can check my answers and/or gain a deeper understanding of the topic.
+
+- Feature Tasks
+
+  - Answers/solutions should be available for each question in the database
+  - Answers/solutions should not be visible by default
+  - Show answers/solutions for all visible questions
+
+- Acceptance Tests
+
+  - Ensure that answers and solutions to questions/challenges are not immediately visible
+  - Ensure that answers are only shown when requested by the user
+  - Ensure that each question has an associated answer in its record
+
+**4. User Interface**
+
+As a user, I want a clean, intuitive, and well-structured User Interface so that I can easily - navigate between site features while studying.
+
+- Feature Tasks
+
+  - Users can navigate between pages without reloading
+  - Dynamic views render any updates to chosen category
+  - Navigation bar and category select will be visible/available from all pages
+  - Each question should be displayed on a well-defined card
+  - Each question should have a detailed view with further information
+  - Each question detail view should have an option to show the answer/solution
+  - Show clearly-defined loading indicators when users are waiting for data
+
+- Acceptance Tests
+
+  - Ensure that there is a clear distinction between the "question only" view and the "question details" view to allow users to test their recall abilities when desired
+  - Provide a clean and unified theme for the site for an appealing aesthetic
+  - Ensure that users can navigate between views without a full-page reload
+  - Provide loading indicator if users are waiting for a view to render
+  - Provide a clear error message if system or view is unavailable
+
+**5. Authorization**
+
+As a user, I want to be able to log in to a persistent and secure profile so that I can have a - customized and personalized experience.
+
+- Feature Tasks
+
+  - Users can sign up with a username and password
+  - Password will be encrypted and secure
+  - Users can log back in and retrieve their personal data
+
+- Acceptance Tests
+  - Ensure that encrypted sample users can be retrieved from a mock database
+  - Ensure that users can only access their own information and notes and not those of any other user
+  - Ensure that users cannot alter site data or content
+  - Ensure that passwords are not accessible
+  - Ensure that users can access notes field and any saved notes when logged in
+
+**6. Notes**
+
+As a logged in user, I want to be able to take notes on specific study questions so that I can build on my understanding of a given topic over time.
+
+- Feature Tasks
+
+  - Notes will not be visible or accessible to guest users
+  - Notes will be accessible to users that are authorized (logged in)
+  - Detail view of a specific question will include access to a 'Notes' section
+  - Notes will be editable, savable, and persistent from session to session.
+  - Users can only view their personal notes (not shared with the community/other users)
+
+- Acceptance Tests
+
+  - Guest users should not be aware of 'Notes' as a field (ie no 'gap' in site)
+  - Logged in users should be able to view an editable field ('Notes') when viewing the detail page of a - specific question
+  - Notes should be persistent from session to session
+  - Notes should be available only to the user they are associated with (not public)
+
+## Domain Model
+
+![Project UML](./assets/final-project-uml.png)
+
+## Wireframes
+
+![Project Wireframe 1](./assets/final-project-whiteboard1.png)
+![Project Wireframe 2](./assets/final-project-whiteboard2.png)
+![Project Wireframe 3](./assets/final-project-whiteboard3.png)
+
 ## Entity Relationship Diagram
 
+![Project ERD](./assets/final-project-erd.png)
+
 ### PM Tools
+
+- GitHub will server as a central repository for all working code and completed steps
 
 - Trello will act as the team project management hub to maintain organization of daily tasks, measure progress toward MVP, and document individual work loads
 
 - [Project Board via Trello](https://trello.com/b/KoWpVwCK/final-project-kanban)
-
-- GitHub will server as a central repository for all working code and completed steps
-
-### Conflict Plan
-
-- In the moment, use our agreed upon phrase ‘We need to talk’ in order to halt work and shift focus to conflict resolution.
-  - If issues aren’t caught in the moment but are still simmering, use the phrase when you realize there is an issue that needs to be addressed.
-- If an issue arises that is primarily an interpersonal issue (i.e. frustration with a teammate) involved parties will take a min. 15min cooldown period, then reconvene for a discussion.
-  - Full team can always be involved if impartial parties are needed to diffuse tension.
-  - Involve TAs / instructor as a last resort as needed
-- If an issue arises regarding how to proceed with a feature wherein team members cannot agree on a best course of action, a simple majority (2:1) will win. In the case of a deadlock (should someone abstain) we will employ a digital dice roller over screen share to break the tie - high roll wins.
-
-### Communication Plan
-
-- Group meetings in Remo at start and end of day to check in and set tasks / confirm where everyone is on delegated tasks and reset for the next day.
-  - Start of Day: 9:00 am
-  - End of Day: 4:30pm
-- After Hours communication will be through Slack on our group thread
-- Also use Slack for any persistent communications (NOT Remo Chat)
-- Group ethos is "design by consensus"
-  - Use the ‘Talking Hat’ to designate the speaker at any given time and to give each member a turn at contributing.
-  - Include a space for ‘Last Thoughts?’ when closing out any given discussion topic so that there is space for quieter voices to speak up before it feels too late to contribute.
-- Psychological Safety Net:
-  - Code Phrase: “We need to talk” = I am not feeling psychologically safe and we need to address what’s going on.
-  - If issues arise during pair programming / outside of full group settings, a Group Meeting can be requested via Slack and all members will make it a priority to schedule that meeting as soon as reasonably possible.
-
-### Work Place
-
-- Trello: We will use a Trello Board as our primary project management tool
-  - This is how we will track who is assigned to specific tasks and what tasks are yet to be done / in progress / complete
-  - See "PM Tools" section above for project board link
-- AM meetings we will divide up tasks for the day in a way that feels equitable to all members and set goals to be completed for end of day
-  - If any work was done after hours, this would be the time to update the group and do any necessary merges before beginning the days work
-- PM meetings we will review what progress has been made on those tasks that each person had tackled and discuss what (if any) tasks individual members would like to work on after hours
-  - If specific tasks have been completed, we can review the code and then collectively participate in a branch merge
-  - Tasks that have not been completed will be reviewed - if they are more involved than we had realized we may divide them into smaller steps or plan for paired programming time to tackle it the next day
-  - No after hours work will be required, but if anyone wants to work more on a specific task they will need to declare so at the end of the day OR inform the group via Slack so that we don’t duplicate efforts
-
-### Git Process
-
-- ACP to individual branches often - any time significant process is made
-- We will have protections in place on both the master and ‘dev’ branch so that no one can accidentally push directly to master
-- Only push individual branches to the ‘dev’ branch when branches are fully functional new pieces of code. These branches may still be updated in the future
-  - PR to master will occur only after a group meeting to review the ‘dev’ branch / PR and agree that it is ready to add to the master (most likely during PM meetings)
-  - These group meetings can be requested by any member as they feel they reach a stopping point with their branch and will be scheduled for the next available time convenient to all members.
