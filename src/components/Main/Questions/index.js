@@ -17,14 +17,15 @@ function parseQuestion(data){
     // console.log('Parsed Question:', parsedData.question);
 
 const Questions = ({ questions }) => {
-  console.log('Test:', questions);
+
+
   return (
     <>
       <h2>Questions Component</h2>
       <ul>
         {questions.map(eachQuestion => {
           return (
-          <li key={eachQuestion.id} onClick={() => console.log('Clicked this Question:', eachQuestion)}>{eachQuestion.questionAnswer}</li>
+          <li key={eachQuestion.id} onClick={() => console.log('Clicked this Question:', eachQuestion)}>{parseQuestion(eachQuestion).question}</li>
           )
         })}
       </ul>
