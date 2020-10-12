@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const initialState = {
-  categories: {},
+  categories: ['category1', 'category2', 'category3'],
   activeCategory: {},
 };
 
@@ -43,9 +43,18 @@ export function getCategories() {
   return async function (dispatch) {
     const response = await axios.get('http://localhost:3000/categories');
     console.log('getCategories RESPONSE', response);
+
+    let categories = response.data;
+    let filteredArray = [];
+    let filteredResponse = categories.filter(category => {
+      if (!filteredArray.includes(category.category)) {
+        filteredArray.push(category.category);
+      }
+    });
+
     dispatch({
       type: 'GET_CATEGORIES',
-      payload: response.data.results,
+      payload: filteredArray,
     });
   };
 }

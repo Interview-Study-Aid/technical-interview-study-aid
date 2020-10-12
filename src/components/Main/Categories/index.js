@@ -10,9 +10,22 @@ import { connect } from 'react-redux';
 import { getCategories, selectCategory } from '../../../store/categories';
 
 const Categories = ({ getCategories, selectCategory, categories }) => {
+  useEffect(() => {
+    getCategories();
+  }, [getCategories]);
+
   return (
     <>
       <h2>Categories Component</h2>
+      <ul>
+        {categories.map(each => {
+          return (
+            <li key={each} onClick={() => console.log('clicked!')}>
+              {each}
+            </li>
+          );
+        })}
+      </ul>
     </>
   );
 };
