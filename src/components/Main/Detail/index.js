@@ -8,6 +8,7 @@
 
 import React, { Children, useState } from 'react';
 import { connect } from 'react-redux';
+import { Modal } from 'react-bootstrap';
 import { closeQuestion } from '../../../store/questions';
 
 function parseQuestion(data){
@@ -29,21 +30,27 @@ const Detail = ({ showModal, questionObject, closeQuestion }) => {
 
 
   return(
-    <div className={showHideClassName}>
+    <Modal 
+    show={showModal} 
+    onHide={closeQuestion} 
+    className={showHideClassName}
+    >
+      <Modal.Header>
+        <Modal.Title>{question}</Modal.Title>
+      </Modal.Header>
       <section className="modal-main">
-        <h2>Details!</h2>
-          <br />
+          {/* <br />
           {id}
           <br />
           {category}
           <br />
-          {question}
+          {question} */}
           <br />
           {answer}
           <br />
         <button onClick={closeQuestion}>Close</button>
       </section>
-    </div>
+    </Modal>
 
   ) 
 };
