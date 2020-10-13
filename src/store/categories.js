@@ -2,7 +2,7 @@ import axios from 'axios';
 
 const initialState = {
   categories: ['category1', 'category2', 'category3'],
-  activeCategory: {},
+  activeCategory: null,
 };
 
 // Reducer
