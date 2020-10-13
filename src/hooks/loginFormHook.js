@@ -3,11 +3,13 @@ import { useState } from 'react';
 const useForm = callback => {
   const [values, setValues] = useState({});
 
-  console.log(values);
+  console.log(values, 'values here');
 
   const handleSubmit = e => {
     if(e){
       e.preventDefault();
+      console.log(e, 'event')
+
     }
     e.target.reset();
     callback(values);
