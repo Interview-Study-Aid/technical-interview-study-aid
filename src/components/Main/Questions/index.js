@@ -5,6 +5,8 @@
 
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
+import Card from 'react-bootstrap/Card';
+import Button from 'react-bootstrap/Button';
 import { selectQuestion, closeQuestion } from '../../../store/questions';
 import Detail from '../Detail';
 
@@ -26,10 +28,19 @@ const Questions = ({ questions, activeQuestion, activeCategory, selectQuestion, 
       <ul>
         {questions.map(eachQuestion => {
           return (
-          <li key={eachQuestion.id} onClick={() => selectQuestion(eachQuestion)}>{parseQuestion(eachQuestion).question}</li>
+          // <li key={eachQuestion.id} onClick={() => selectQuestion(eachQuestion)}>{parseQuestion(eachQuestion).question}</li>
+          <Card style={{ width: '18rem'}}>
+            <Card.Body>
+              <Card.Title>{parseQuestion(eachQuestion).question}</Card.Title>
+              <Button></Button>
+            </Card.Body>
+          </Card>
           )
         })}
       </ul>
+
+
+
       {activeQuestion ? <Detail /> : 'No active question'}
     </>
   );
