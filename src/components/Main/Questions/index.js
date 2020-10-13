@@ -24,7 +24,7 @@ const Questions = ({ questions }) => {
       <ul>
         {questions.map(eachQuestion => {
           return (
-          <li key={eachQuestion.id} onClick={() => console.log('Clicked this Question:', eachQuestion)}>{eachQuestion.questionAnswer}</li>
+          <li key={eachQuestion.id} onClick={() => console.log('Clicked this Question:', eachQuestion)}>{parseQuestion(eachQuestion).question}</li>
           )
         })}
       </ul>

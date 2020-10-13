@@ -12,7 +12,6 @@ export default (state = initialState, action) => {
 
   switch (type) {
   case 'CHANGE_CATEGORY':
-    // TODO: Confirm the shape of the payload - we may need to be more specific
     return { ...state, activeCategory: payload };
 
   case 'GET_CATEGORIES':
@@ -37,7 +36,6 @@ export const selectCategory = category => {
     dispatch({
       type: 'CHANGE_CATEGORY',
       payload: response.data,
-      // TODO: Confirm shape of response => what do we need to pull out?
     });
   };
 };
@@ -45,7 +43,7 @@ export const selectCategory = category => {
 export function getCategories() {
   return async function (dispatch) {
     const response = await axios.get('https://isa-server-401.herokuapp.com/categories/');
-    // const response = await axios.get('https://localhost:3000/categories/');
+    // const response = await axios.get('https://localhost:3000/categories/');    
 
     console.log('getCategories RESPONSE', response);
 
