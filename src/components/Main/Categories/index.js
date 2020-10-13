@@ -7,6 +7,8 @@
 
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
+import Card from 'react-bootstrap/Card';
+import Button from 'react-bootstrap/Button';
 import { getCategories, selectCategory } from '../../../store/categories';
 
 const Categories = ({ getCategories, selectCategory, categories, active }) => {
@@ -19,12 +21,22 @@ const Categories = ({ getCategories, selectCategory, categories, active }) => {
   return (
     <>
       <h2>Categories Component</h2>
-      <ul>
+      <ul
+            style={{display: 'flex', flexDirection: 'column'}}
+      >
         {categories.map(eachCategory => {
           return (
-            <li key={eachCategory} onClick={() => selectCategory(eachCategory)}>
-              {eachCategory}
-            </li>
+            <Card>
+              <Card.Body
+              key={eachCategory}
+              onClick={() => selectCategory(eachCategory)}
+              >
+                {eachCategory}
+              </Card.Body>
+            </Card>
+            // <li key={eachCategory} onClick={() => selectCategory(eachCategory)}>
+            //   {eachCategory}
+            // </li>
           );
         })}
       </ul>
