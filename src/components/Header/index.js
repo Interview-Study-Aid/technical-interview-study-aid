@@ -7,7 +7,7 @@ const Header = () => {
   return (
     <>
   <Navbar bg="dark" variant="dark">
-    <Navbar.Brand>Interview Study Aid Header</Navbar.Brand>
+    <Navbar.Brand>Interview Study Aid</Navbar.Brand>
   </Navbar>
     </>
   );
