@@ -1,8 +1,17 @@
 /* eslint-disable indent */
-import axios from 'axios';
+// import axios from 'axios';
 
 const initialState = {
-  questions: [],
+  questions: [{
+    'category': 'General',
+    'id': '4',
+    'questionAnswer': '{"question": "", "answer":""}'
+    },
+    {
+    'category': 'General',
+    'id': '3',
+    'questionAnswer': '{"question":"", "answer":""}'
+    }],
   activeQuestion: {},
 };
 
