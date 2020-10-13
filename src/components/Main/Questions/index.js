@@ -25,15 +25,30 @@ const Questions = ({ questions, activeQuestion, activeCategory, selectQuestion, 
   return (
     <>
       <h2>{ activeCategory ? activeCategory[0].category : 'Test' } Questions Component</h2>
-      <ul>
+      <ul 
+      style={{display: 'flex', flexDirection: 'row'}}
+      >
         {questions.map(eachQuestion => {
           return (
           // <li key={eachQuestion.id} onClick={() => selectQuestion(eachQuestion)}>{parseQuestion(eachQuestion).question}</li>
-          <Card style={{ width: '18rem'}}>
+          <Card 
+          border="primary"
+          style={{ width: '18rem'}}
+          bg="danger"
+          >
             <Card.Body>
               <Card.Title>{parseQuestion(eachQuestion).question}</Card.Title>
-              <Button></Button>
+              <Button
+                onClick={() => selectQuestion(eachQuestion)}
+              >
+              View Details
+              </Button>
             </Card.Body>
+            <Card.Footer>
+              <small>
+                Category: {activeCategory ? activeCategory[0].category : null}
+              </small>
+            </Card.Footer>
           </Card>
           )
         })}
