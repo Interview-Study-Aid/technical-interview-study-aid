@@ -1,6 +1,7 @@
 import React from 'react';
 import Categories from './Categories';
 import Questions from './Questions';
+import Detail from './Detail';
 
 const Main = () => {
   return (
@@ -10,6 +11,7 @@ const Main = () => {
       </section>
       <Categories />
       <Questions />
+      <Detail />
     </>
   );
 };

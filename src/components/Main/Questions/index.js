@@ -5,6 +5,8 @@
 
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
+import { selectQuestion, closeQuestion } from '../../../store/questions';
+import Detail from '../Detail';
 
 function parseQuestion(data){
   console.log('Data:', data);
@@ -16,19 +18,19 @@ function parseQuestion(data){
 // let parsedData = JSON.parse(response.data[0].questionAnswer);
     // console.log('Parsed Question:', parsedData.question);
 
-const Questions = ({ questions }) => {
-
-
+const Questions = ({ questions, activeQuestion, activeCategory, selectQuestion, closeQuestion }) => {
+  // console.log('Test:', questions);
   return (
     <>
-      <h2>Questions Component</h2>
+      <h2>{ activeCategory ? activeCategory[0].category : 'Test' } Questions Component</h2>
       <ul>
         {questions.map(eachQuestion => {
           return (
-          <li key={eachQuestion.id} onClick={() => console.log('Clicked this Question:', eachQuestion)}>{parseQuestion(eachQuestion).question}</li>
+          <li key={eachQuestion.id} onClick={() => selectQuestion(eachQuestion)}>{parseQuestion(eachQuestion).question}</li>
           )
         })}
       </ul>
+      {activeQuestion ? <Detail /> : 'No active question'}
     </>
   );
 };
@@ -36,7 +38,12 @@ const Questions = ({ questions }) => {
 const mapStateToProps = state => {
   return {
     questions: state.questions.questions,
+    activeQuestion: state.questions.activeQuestion,
+    showModal: state.questions.showModal,
+    activeCategory: state.categories.activeCategory,
   }
 }
 
-export default connect(mapStateToProps)(Questions);
+const mapDispatchToProps = { selectQuestion, closeQuestion };
+
+export default connect(mapStateToProps, mapDispatchToProps)(Questions);
