@@ -22,6 +22,10 @@ const Detail = ({ showModal, questionObject, closeQuestion }) => {
 
   const showHideClassName = showModal ? "modal display-block" : "modal display-none";
 
+  const [hideAnswer, setHideAnswer] = useState(true);
+  function toggleAnswer(){
+    setHideAnswer(!hideAnswer);
+  }
 
   const id = questionObject.id;
   const category = questionObject.category;
@@ -45,8 +49,11 @@ const Detail = ({ showModal, questionObject, closeQuestion }) => {
           {category}
           <br />
           {question} */}
+          <button
+          onClick={toggleAnswer}
+          >View Answer</button>
           <br />
-          {answer}
+          {!hideAnswer && answer}
           <br />
         <button onClick={closeQuestion}>Close</button>
       </section>

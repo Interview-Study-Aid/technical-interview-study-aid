@@ -7,6 +7,7 @@ import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
+import './questions.scss';
 import { selectQuestion, closeQuestion } from '../../../store/questions';
 import Detail from '../Detail';
 
@@ -24,7 +25,7 @@ const Questions = ({ questions, activeQuestion, activeCategory, selectQuestion, 
   // console.log('Test:', questions);
   return (
     <>
-      <h2>{ activeCategory ? activeCategory[0].category : 'Test' } Questions Component</h2>
+      <h2 className="title">{ activeCategory ? activeCategory[0].category : 'Test' } Questions Component</h2>
       <ul 
       style={{display: 'flex', flexDirection: 'row'}}
       >
@@ -32,13 +33,15 @@ const Questions = ({ questions, activeQuestion, activeCategory, selectQuestion, 
           return (
           // <li key={eachQuestion.id} onClick={() => selectQuestion(eachQuestion)}>{parseQuestion(eachQuestion).question}</li>
           <Card 
+          className="eachQuestion"
           border="primary"
           style={{ width: '18rem'}}
-          bg="danger"
+          bg="primary"
           >
             <Card.Body>
               <Card.Title>{parseQuestion(eachQuestion).question}</Card.Title>
               <Button
+                className="viewDetailButton"
                 onClick={() => selectQuestion(eachQuestion)}
               >
               View Details
