@@ -17,7 +17,7 @@ const Categories = ({ getCategories, selectCategory, categories, active }) => {
     getCategories();
   }, [getCategories]);
 
-  console.log('ACTIVE CATEGORY: ', active);
+  // console.log('ACTIVE CATEGORY: ', active);
 
   return (
     <>

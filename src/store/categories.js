@@ -47,7 +47,7 @@ export function getCategories() {
     );
     // const response = await axios.get('https://localhost:3000/categories/');
 
-    console.log('getCategories RESPONSE', response);
+    // console.log('getCategories RESPONSE', response);
 
     let categories = response.data;
     let filteredArray = [];

@@ -53,18 +53,27 @@ const useForm = callback => {
       const username = values.username;
       const password = values.password;
 
-      const baseCreds = `${username}:${password}`;
-      console.log(baseCreds);
+      // const baseCreds = `${username}:${password}`
+      // const url = 'https://isa-server-401.herokuapp.com/signup';
+
+      const url = 'https://localhost:3000/signup';
+      const response = await axios({
+        method: 'POST',
+        url: url,
+        userName: username,
+        userPassword: password,
+      });
+
+      console.log('RESPONSE FROM AXIOS???', response.body);
 
       // const url = 'https://isa-server-401.herokuapp.com/login';
-      const url = 'https://localhost:3000/login';
 
-      const response = await axios.get(url, {
-        method: 'GET',
-        headers: {
-          authorization: `Basic ${baseCreds}`,
-        },
-      });
+      // const response = await axios.get(url, {
+      //   method: 'GET',
+      //   headers: {
+      //     authorization: `Basic ${baseCreds}`,
+      //   },
+      // });
 
       // console.log('RESPONSE FROM AXIOS:::::,', response);
     }
