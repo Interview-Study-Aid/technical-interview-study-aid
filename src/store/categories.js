@@ -2,8 +2,8 @@
 import axios from 'axios';
 
 const initialState = {
-  categories: ['category1', 'category2', 'category3'],
-  activeCategory: null,
+  categories: [],
+  activeCategory: 'General',
 };
 
 // Reducer
@@ -31,6 +31,8 @@ export const selectCategory = category => {
       `https://isa-server-401.herokuapp.com/categories/${category}`
       // `https://localhost:3000/categories/${category}`
     );
+
+    console.log('CATEGORY::', category);
     // console.log('selectCategory RESPONSE', response.data);
     // let parsedData = JSON.parse(response.data[0].questionAnswer);
     // console.log('Parsed Question:', parsedData.question);

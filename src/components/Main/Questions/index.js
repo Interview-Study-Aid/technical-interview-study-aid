@@ -30,9 +30,8 @@ const Questions = ({
 }) => {
   return (
     <>
-      <h2 className="title">
-        {activeCategory ? activeCategory[0].category : 'Test'} Questions
-        Component
+      <h2 className="q_title">
+        {(activeCategory[0].category === undefined) ? 'Please Select a Category' : `${activeCategory[0].category} Questions`}
       </h2>
       <ul style={{ display: 'flex', flexDirection: 'row' }}>
         {questions.map(eachQuestion => {
@@ -40,9 +39,9 @@ const Questions = ({
             // <li key={eachQuestion.id} onClick={() => selectQuestion(eachQuestion)}>{parseQuestion(eachQuestion).question}</li>
             <Card
               className="eachQuestion"
-              border="primary"
+              border="dark"
               style={{ width: '18rem' }}
-              bg="primary"
+              bg="info"
               key={eachQuestion.id}
             >
               <Card.Body>

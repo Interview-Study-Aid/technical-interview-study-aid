@@ -10,6 +10,7 @@ import React, { Children, useState } from 'react';
 import { connect } from 'react-redux';
 import { Modal } from 'react-bootstrap';
 import { closeQuestion } from '../../../store/questions';
+import Notes from '../Notes';
 
 function parseQuestion(data) {
   let target = data.questionAnswer;
@@ -18,14 +19,30 @@ function parseQuestion(data) {
   return parsedData;
 }
 
-const Detail = ({ showModal, questionObject, closeQuestion }) => {
+// questionObject = activeQuestion
+// will need activeQuestion.id to get the appropriate Notes
+// activeQuestion.notes - assuming they match with the user?
+// Do a check for the notes to see if they exist, and check the user?
+
+const Detail = ({ showModal, questionObject, closeQuestion, isLoggedIn }) => {
   const showHideClassName = showModal
     ? 'modal display-block'
     : 'modal display-none';
 
   const [hideAnswer, setHideAnswer] = useState(true);
+  const [hideNotes, setHideNotes] = useState(true);
+  
   function toggleAnswer() {
     setHideAnswer(!hideAnswer);
+  }
+
+  function toggleNotes() {
+    setHideNotes(!hideNotes);
+  }
+
+  function closeAndReset(){
+    closeQuestion();
+    setHideAnswer(true);
   }
 
   const id = questionObject.id;
@@ -33,36 +50,58 @@ const Detail = ({ showModal, questionObject, closeQuestion }) => {
   const question = questionObject ? parseQuestion(questionObject).question : '';
   const answer = questionObject ? parseQuestion(questionObject).answer : '';
 
-  return (
-    <Modal
+  if(isLoggedIn){
+
+    return (
+      <Modal
       show={showModal}
-      onHide={closeQuestion}
+      onHide={closeAndReset}
       className={showHideClassName}
-    >
+      >
       <Modal.Header>
         <Modal.Title>{question}</Modal.Title>
       </Modal.Header>
       <section className="modal-main">
-        {/* <br />
-          {id}
-          <br />
-          {category}
-          <br />
-          {question} */}
         <button onClick={toggleAnswer}>View Answer</button>
         <br />
         {!hideAnswer && answer}
         <br />
-        <button onClick={closeQuestion}>Close</button>
+        <button onClick={toggleNotes}>View Notes</button>
+        <br />
+        {!hideNotes && <Notes />}
+        <br />
+        <button onClick={closeAndReset}>Close</button>
       </section>
     </Modal>
   );
+} else {
+  return (
+    <Modal
+    show={showModal}
+    onHide={closeAndReset}
+    className={showHideClassName}
+    >
+    <Modal.Header>
+      <Modal.Title>{question}</Modal.Title>
+    </Modal.Header>
+    <section className="modal-main">
+      <button onClick={toggleAnswer}>View Answer</button>
+      <br />
+      {!hideAnswer && answer}
+      <br />
+      <button onClick={closeAndReset}>Close</button>
+    </section>
+  </Modal>
+);
+
+}
 };
 
 const mapStateToProps = state => {
   return {
     questionObject: state.questions.activeQuestion,
     showModal: state.questions.showModal,
+    isLoggedIn: state.user.loggedIn,
   };
 };
 

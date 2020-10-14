@@ -3,16 +3,6 @@
 
 const initialState = {
   questions: [
-    {
-      category: 'General',
-      id: '4',
-      questionAnswer: '{"question": "", "answer":""}',
-    },
-    {
-      category: 'General',
-      id: '3',
-      questionAnswer: '{"question":"", "answer":""}',
-    },
   ],
   activeQuestion: {
     category: '',
