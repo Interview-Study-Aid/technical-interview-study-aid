@@ -62,7 +62,7 @@ export const setLoginState = loginData => {
 
 export const createUser = user => {
   const { username, password } = user;
-  const url = 'https://isa-server-401.herokuapp.com/signup';
+  const url = 'https://isa-server-401.herokuapp.com/signup'; // seems to work with real route
   // const url = 'https://localhost:3000/signup';
   return async function (dispatch) {
     const response = await axios.post(url, {
