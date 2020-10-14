@@ -10,6 +10,7 @@ export default (state = initialState, action) => {
 
   switch (type) {
     case 'LOGIN':
+      // this is not logging/updating properly
       console.log('IN TYPE DEF:', type, payload);
       return {
         ...state,

@@ -6,7 +6,9 @@ import { Col, InputGroup, FormControl } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import { setLogin, setLogout } from '../../../store/user';
 
-const LoginForm = props => {
+// importing the functions from props with dispatch or import like above is acting very strangely
+
+const LoginForm = ({ setLogin, setLogout }) => {
   const [values, setValues] = useState({});
 
   const handleSignup = e => {
@@ -44,7 +46,7 @@ const LoginForm = props => {
           setLogin(loginData);
         }
       })
-      .catch(er => console.log(er.message));
+      .catch(err => console.log(err.message));
   };
 
   const handleInputChangeName = e => {
@@ -81,6 +83,7 @@ const LoginForm = props => {
               id="inlineFormInputGroup"
               placeholder="Password"
               onChange={handleInputChangePassword}
+              type="password"
             />
           </InputGroup>
         </Col>
@@ -104,7 +107,11 @@ const LoginForm = props => {
   );
 };
 
-// const mapDispatchToProps = { setLogin, setLogout };
+const mapDispatchToProps = { setLogin, setLogout };
 
-// export default connect(mapDispatchToProps)(LoginForm);
-export default LoginForm;
+const mapStateToProps = state => {
+  return {};
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(LoginForm);
+// export default LoginForm;

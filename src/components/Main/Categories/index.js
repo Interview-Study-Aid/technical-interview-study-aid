@@ -8,7 +8,6 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import Card from 'react-bootstrap/Card';
-import Button from 'react-bootstrap/Button';
 import './categories.scss';
 import { getCategories, selectCategory } from '../../../store/categories';
 
