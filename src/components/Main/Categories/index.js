@@ -25,19 +25,11 @@ const Categories = ({ getCategories, selectCategory, categories, active }) => {
       <ul style={{ display: 'flex', flexDirection: 'row', maxWidth: '30%' }}>
         {categories.map(eachCategory => {
           return (
-            <>
-              <Card className="eachCategory">
-                <Card.Body
-                  key={eachCategory}
-                  onClick={() => selectCategory(eachCategory)}
-                >
-                  {eachCategory}
-                </Card.Body>
-              </Card>
-            </>
-            // <li key={eachCategory} onClick={() => selectCategory(eachCategory)}>
-            //   {eachCategory}
-            // </li>
+            <Card className="eachCategory" key={eachCategory}>
+              <Card.Body onClick={() => selectCategory(eachCategory)}>
+                {eachCategory}
+              </Card.Body>
+            </Card>
           );
         })}
       </ul>
