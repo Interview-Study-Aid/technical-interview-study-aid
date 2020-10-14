@@ -3,10 +3,10 @@ import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 // import Card from 'react-bootstrap/Card';
 import useForm from '../../../hooks/loginFormHook';
-  import {Row, Col, InputGroup, FormControl} from 'react-bootstrap';
+import {Row, Col, InputGroup, FormControl} from 'react-bootstrap';
 
 const LoginForm = (props) => {
-  const { handleSubmit, handleInputChange } = useForm(props.handleSubmit);
+  const { handleSubmit, handleInputChangeName,handleInputChangePassword } = useForm(props.handleSubmit);
  
   return (
     <Form onSubmit={handleSubmit}>
@@ -19,7 +19,7 @@ const LoginForm = (props) => {
         className="mb-2"
         id="inlineFormInput"
         placeholder="User Name"
-        onChange={handleInputChange}
+        onChange={handleInputChangeName}
       />
     </Col>
     <Col xs="auto">
@@ -28,7 +28,7 @@ const LoginForm = (props) => {
       </Form.Label>
       <InputGroup className="mb-2">
         <FormControl id="inlineFormInputGroup" placeholder="Password" 
-        onChange={handleInputChange} />
+        onChange={handleInputChangePassword} />
       </InputGroup>
     </Col>
     <Col xs="auto">
