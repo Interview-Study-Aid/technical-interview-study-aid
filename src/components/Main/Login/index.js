@@ -1,69 +1,117 @@
-import React from 'react';
+import React, { useState } from 'react';
+import axios from 'axios';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
-// import Card from 'react-bootstrap/Card';
-import useForm from '../../../hooks/loginFormHook';
-import {Row, Col, InputGroup, FormControl} from 'react-bootstrap';
+import { Col, InputGroup, FormControl } from 'react-bootstrap';
+import { connect } from 'react-redux';
+import { setLogin, setLogout } from '../../../store/user';
 
-const LoginForm = (props) => {
-  const { handleSubmit, handleSignup, handleInputChangeName,handleInputChangePassword } = useForm(props.handleSubmit);
- 
+// importing the functions from props with dispatch or import like above is acting very strangely
+
+const LoginForm = ({ setLogin, setLogout }) => {
+  const [values, setValues] = useState({});
+
+  const handleSignup = e => {
+    // const url = `http://localhost:3000`;
+    const url = `https://isa-server-401.herokuapp.com`;
+    e.preventDefault();
+    axios({
+      method: 'post',
+      url: `${url}/signup`,
+      data: {
+        userName: values.userName,
+        userPassword: values.userPassword,
+      },
+    })
+      .then(data => console.log(data))
+      .then();
+  };
+
+  const handleSubmit = e => {
+    // const url = `http://localhost:3000`;
+    const url = `https://isa-server-401.herokuapp.com`;
+    e.preventDefault();
+
+    axios
+      .get(`${url}/login`, {
+        headers: {
+          Authorization: `Bearer ${values.userName}:${values.userPassword}`,
+        },
+      })
+      .then(data => {
+        // console.log('Sign In Data', data.data);
+        if (data.data.token) {
+          localStorage.setItem('token', data.data.token);
+          let loginData = data.data;
+          setLogin(loginData);
+        }
+      })
+      .catch(err => console.log(err.message));
+  };
+
+  const handleInputChangeName = e => {
+    e.persist();
+    // e.preventDefault();
+    setValues(values => ({ ...values, userName: e.target.value }));
+  };
+
+  const handleInputChangePassword = e => {
+    e.persist();
+    setValues(values => ({ ...values, userPassword: e.target.value }));
+  };
+
   return (
-    <Form >
-  <Form.Row className="align-items-center">
-    <Col xs="auto">
-      <Form.Label htmlFor="inlineFormInput" srOnly>
-        Name
-      </Form.Label>
-      <Form.Control
-        className="mb-2"
-        id="inlineFormInput"
-        placeholder="User Name"
-        onChange={handleInputChangeName}
-      />
-    </Col>
-    <Col xs="auto">
-      <Form.Label htmlFor="inlineFormInputGroup" srOnly>
-        Username
-      </Form.Label>
-      <InputGroup className="mb-2">
-        <FormControl id="inlineFormInputGroup" placeholder="Password" 
-        onChange={handleInputChangePassword} />
-      </InputGroup>
-    </Col>
-    <Col xs="auto">
-      <Button type="submit" className="mb-2" onClick={handleSubmit}>
-        Login
-      </Button>
-    </Col>
-    <Col xs="auto">
-      <Button type="submit" className="mb-2" onClick={handleSignup}>
-        SignUp
-      </Button>
-    </Col>
-  </Form.Row>
-</Form>
-    // <Form onSubmit={handleSubmit}>
-    //   <Card>
-    //     <Form.Label>Login Form</Form.Label>
-    //     <Form.Control 
-    //       type="text"
-    //       name="text"
-    //       placeholder="username"
-    //       onChange={handleInputChange}
-    //     />
-    //     <Form.Control 
-    //       type="text"
-    //       name="text"
-    //       placeholder="password"
-    //       onChange={handleInputChange}
-    //     />
-        
-    //     <Button variant="primary" type="submit">Log In!</Button>
-    //     <Button variant="primary" type="submit">Sign Up!</Button>
-    //   </Card>
-    // </Form>
-  )
-}
+    <Form>
+      <Form.Row className="align-items-center">
+        <Col xs="auto">
+          <Form.Label htmlFor="inlineFormInput" srOnly>
+            Name
+          </Form.Label>
+          <Form.Control
+            className="mb-2"
+            id="inlineFormInput"
+            placeholder="User Name"
+            onChange={handleInputChangeName}
+          />
+        </Col>
+        <Col xs="auto">
+          <Form.Label htmlFor="inlineFormInputGroup" srOnly>
+            Username
+          </Form.Label>
+          <InputGroup className="mb-2">
+            <FormControl
+              id="inlineFormInputGroup"
+              placeholder="Password"
+              onChange={handleInputChangePassword}
+              type="password"
+            />
+          </InputGroup>
+        </Col>
+        <Col xs="auto">
+          <Button type="submit" className="mb-2" onClick={handleSubmit}>
+            Login
+          </Button>
+        </Col>
+        <Col xs="auto">
+          <Button type="submit" className="mb-2" onClick={handleSignup}>
+            SignUp
+          </Button>
+        </Col>
+        <Col xs="auto">
+          <Button type="submit" className="mb-2" onClick={setLogout}>
+            Log Out
+          </Button>
+        </Col>
+      </Form.Row>
+    </Form>
+  );
+};
 
-export default LoginForm;
+const mapDispatchToProps = { setLogin, setLogout };
+
+const mapStateToProps = state => {
+  return {};
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(LoginForm);
+// export default LoginForm;

@@ -1,16 +1,29 @@
 // Header
 import React from 'react';
+import { connect } from 'react-redux';
 
-import Navbar from 'react-bootstrap/Navbar'
+import Navbar from 'react-bootstrap/Navbar';
+// import user from '../../store/user';
 
-const Header = () => {
+const Header = props => {
   return (
     <>
-  <Navbar bg="dark" variant="dark">
-    <Navbar.Brand>Interview Study Aid</Navbar.Brand>
-  </Navbar>
+      <Navbar bg="dark" variant="dark">
+        <Navbar.Brand>Interview Study Aid</Navbar.Brand>
+        <Navbar.Text>
+          Welcome, {props.username}. You are logged{' '}
+          {props.loggedIn ? 'IN' : 'OUT'}
+        </Navbar.Text>
+      </Navbar>
     </>
   );
 };
 
-export default Header;
+const mapStateToProps = state => {
+  return {
+    username: state.user.userName,
+    loggedIn: state.user.loggedIn,
+  };
+};
+
+export default connect(mapStateToProps)(Header);

@@ -11,19 +11,20 @@ import { connect } from 'react-redux';
 import { Modal } from 'react-bootstrap';
 import { closeQuestion } from '../../../store/questions';
 
-function parseQuestion(data){
+function parseQuestion(data) {
   let target = data.questionAnswer;
   let parsedData = JSON.parse(target);
-  console.log('Parsed Data:', parsedData);
+  // console.log('Parsed Data:', parsedData);
   return parsedData;
 }
 
 const Detail = ({ showModal, questionObject, closeQuestion }) => {
-
-  const showHideClassName = showModal ? "modal display-block" : "modal display-none";
+  const showHideClassName = showModal
+    ? 'modal display-block'
+    : 'modal display-none';
 
   const [hideAnswer, setHideAnswer] = useState(true);
-  function toggleAnswer(){
+  function toggleAnswer() {
     setHideAnswer(!hideAnswer);
   }
 
@@ -32,34 +33,30 @@ const Detail = ({ showModal, questionObject, closeQuestion }) => {
   const question = questionObject ? parseQuestion(questionObject).question : '';
   const answer = questionObject ? parseQuestion(questionObject).answer : '';
 
-
-  return(
-    <Modal 
-    show={showModal} 
-    onHide={closeQuestion} 
-    className={showHideClassName}
+  return (
+    <Modal
+      show={showModal}
+      onHide={closeQuestion}
+      className={showHideClassName}
     >
       <Modal.Header>
         <Modal.Title>{question}</Modal.Title>
       </Modal.Header>
       <section className="modal-main">
-          {/* <br />
+        {/* <br />
           {id}
           <br />
           {category}
           <br />
           {question} */}
-          <button
-          onClick={toggleAnswer}
-          >View Answer</button>
-          <br />
-          {!hideAnswer && answer}
-          <br />
+        <button onClick={toggleAnswer}>View Answer</button>
+        <br />
+        {!hideAnswer && answer}
+        <br />
         <button onClick={closeQuestion}>Close</button>
       </section>
     </Modal>
-
-  ) 
+  );
 };
 
 const mapStateToProps = state => {
