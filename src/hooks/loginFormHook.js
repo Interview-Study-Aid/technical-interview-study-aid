@@ -26,7 +26,10 @@ const useForm = callback => {
       headers: {
         Authorization:  `Bearer ${values.userName}:${values.userPassword}`
       }
-     }).then(data => console.log(data));
+     }).then(data => {
+       if(data.data.token){
+        localStorage.setItem("token", data.data.token);
+       }}).catch(er => console.log(er.message))
   };
 
   const handleInputChangeName = e => {
