@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 // import Card from 'react-bootstrap/Card';
@@ -11,6 +11,8 @@ const LoginForm = props => {
     handleInputChangeName,
     handleInputChangePassword,
   } = useForm(props.handleSubmit);
+
+  const [username, setUsername] = useState('');
 
   return (
     <Form onSubmit={handleSubmit}>
