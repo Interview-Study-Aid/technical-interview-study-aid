@@ -28,7 +28,7 @@ const Questions = ({
   selectQuestion,
   closeQuestion,
 }) => {
-  // console.log('Test:', questions);
+  console.log('Test:', questions);
   return (
     <>
       <h2 className="title">

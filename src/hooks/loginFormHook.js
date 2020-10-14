@@ -4,6 +4,8 @@ import { setLogin } from '../store/user';
 const axios = require('axios');
 
 const useForm = ({ setLogin }) => {
+  // console.log('setLogin', setLogin);
+  // return;
   const [values, setValues] = useState({});
 
   const handleSignup = e => {

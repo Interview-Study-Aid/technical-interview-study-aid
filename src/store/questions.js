@@ -2,21 +2,23 @@
 // import axios from 'axios';
 
 const initialState = {
-  questions: [{
-    'category': 'General',
-    'id': '4',
-    'questionAnswer': '{"question": "", "answer":""}'
+  questions: [
+    {
+      category: 'General',
+      id: '4',
+      questionAnswer: '{"question": "", "answer":""}',
     },
     {
-    'category': 'General',
-    'id': '3',
-    'questionAnswer': '{"question":"", "answer":""}'
-    }],
-  activeQuestion: {
-    'category': '',
-    'id': '',
-    'questionAnswer': '{"question": "", "answer":""}'
+      category: 'General',
+      id: '3',
+      questionAnswer: '{"question":"", "answer":""}',
     },
+  ],
+  activeQuestion: {
+    category: '',
+    id: '',
+    questionAnswer: '{"question": "", "answer":""}',
+  },
   showModal: false,
 };
 
@@ -24,17 +26,16 @@ const initialState = {
 
 export const selectQuestion = question => {
   console.log('PAYLOAD FROM SELECT QUESTION??', question);
- return {
-   type: 'SELECT_QUESTION',
-   payload: question,
- };
+  return {
+    type: 'SELECT_QUESTION',
+    payload: question,
+  };
 };
-
 
 export const closeQuestion = () => {
   return {
-   type: 'CLOSE_QUESTION',
-   payload: null,
+    type: 'CLOSE_QUESTION',
+    payload: null,
   };
 };
 
@@ -47,12 +48,18 @@ export default (state = initialState, action) => {
       return { ...state, questions: payload };
 
     case 'SELECT_QUESTION':
-      return {...state, activeQuestion: payload, showModal: true};
-    
+      return { ...state, activeQuestion: payload, showModal: true };
+
     case 'CLOSE_QUESTION':
-      return {...state, activeQuestion: {'category': '',
-      'id': '',
-      'questionAnswer': '{"question": "", "answer":""}'}, showModal: false};
+      return {
+        ...state,
+        activeQuestion: {
+          category: '',
+          id: '',
+          questionAnswer: '{"question": "", "answer":""}',
+        },
+        showModal: false,
+      };
 
     default:
       return state;

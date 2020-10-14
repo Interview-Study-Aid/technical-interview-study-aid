@@ -2,6 +2,7 @@
 const initialState = {
   loggedIn: false,
   userName: 'Guest',
+  token: '',
 };
 
 export default (state = initialState, action) => {
