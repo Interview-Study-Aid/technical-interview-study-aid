@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import { sha256 } from 'js-sha256';
-import { encode } from 'js-base64';
+// import { sha256 } from 'js-sha256';
+// import { encode } from 'js-base64';
 
 const useForm = callback => {
   const [values, setValues] = useState({});
