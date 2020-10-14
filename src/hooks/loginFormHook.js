@@ -1,11 +1,10 @@
+import axios from 'axios';
 import { useState } from 'react';
 // import { sha256 } from 'js-sha256';
 // import { encode } from 'js-base64';
 
 const useForm = callback => {
-  const [values, setValues] = useState({});
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
+  const [values, setValues] = useState({}); // sets username and password as values.username & values.password
 
   // const handleSignup = e => {
   //   //   e.preventDefault();
@@ -47,24 +46,29 @@ const useForm = callback => {
   //   e.target.reset();
   // };
 
-  const handleSubmit = e => {
+  const handleSubmit = async e => {
     if (e) {
+      console.log(`SUBMIT WILL SEND: ${values.username}, ${values.password}`);
       e.preventDefault();
-      console.log(`SUBMIT WILL SEND: ${username}, ${password}`);
+      const username = values.username;
+      const password = values.password;
+
       const baseCreds = `${username}:${password}`;
+      console.log(baseCreds);
 
       // const url = 'https://isa-server-401.herokuapp.com/login';
-      const url = 'https://localhost:3000/categories/login';
+      const url = 'https://localhost:3000/login';
 
-      // fetch(url, {
-      //   method: 'GET',
-      //   headers: {
-      //     authorization: `Basic ${baseCreds}`,
-      //   },
-      // }).then(results => {
-      //   console.log(results, 'result');
-      // });
+      const response = await axios.get(url, {
+        method: 'GET',
+        headers: {
+          authorization: `Basic ${baseCreds}`,
+        },
+      });
+
+      // console.log('RESPONSE FROM AXIOS:::::,', response);
     }
+
     e.target.reset();
   };
 
@@ -74,23 +78,9 @@ const useForm = callback => {
     setValues(values => ({ ...values, [e.target.name]: e.target.value })); // maybe userName: e.target.value?
   };
 
-  // const handleInputChangeName = e => {
-  //   e.persist();
-  //   // e.preventDefault();
-  //   console.log(e);
-  //   setValues(values => ({ ...values, userName: e.target.value }));
-  // };
-
-  // const handleInputChangePassword = e => {
-  //   e.persist();
-  //   console.log(e);
-  //   setValues(values => ({ ...values, userPassword: e.target.value }));
-  // };
-
   return {
     handleSubmit,
     handleInputChange,
-    // handleInputChangePassword,
     values,
   };
 };

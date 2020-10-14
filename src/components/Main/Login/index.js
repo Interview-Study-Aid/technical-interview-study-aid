@@ -6,11 +6,7 @@ import useForm from '../../../hooks/loginFormHook';
 import { Row, Col, InputGroup, FormControl } from 'react-bootstrap';
 
 const LoginForm = props => {
-  const {
-    handleSubmit,
-    handleInputChange,
-    handleInputChangePassword,
-  } = useForm(props.handleSubmit);
+  const { handleSubmit, handleInputChange } = useForm(props.handleSubmit);
 
   const [username, setUsername] = useState('');
 
