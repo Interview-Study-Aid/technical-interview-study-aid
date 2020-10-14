@@ -37,28 +37,36 @@ export const setLoginState = loginData => {
   };
 };
 
-// export const login = loginInput => {
-//   const { username, password } = loginInput;
-//   const url = 'https://localhost:3000/login';
-//   return async function (dispatch) {
-//     const response = await axios.post(url, {
-//       method: 'POST',
-//       headers: {
-//         Accept: 'application/json',
-//         'Content-Type': 'application/json',
-//       },
-//       body: JSON.stringify(loginInput),
-//     });
+export const login = loginInput => {
+  const { username, password } = loginInput;
+  // const url = 'https://localhost:3000/login';
+  const url = 'https://isa-server-401.herokuapp.com/login';
+  return async function (dispatch) {
+    const response = await axios.post(url, {
+      // method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(loginInput),
+    });
 
-//     const jsonResponse = response.json();
+    console.log('RESPONSE IN LOGIN THINGY?', response);
 
-//     if (jsonResponse.msg === 'success') {
-//       dispatch(setLoginState({ ...jsonResponse }));
-//     } else {
-//       console.log('LOGIN FAILED!!');
-//     }
-//   };
-// };
+    //   const jsonResponse = response.json();
+
+    //   if (jsonResponse.msg === 'success') {
+    //     dispatch(setLoginState({ ...jsonResponse }));
+    //   } else {
+    //     console.log('LOGIN FAILED!!');
+    //   }
+    // };
+    dispatch({
+      type: 'SET_LOGIN',
+      payload: response.data,
+    });
+  };
+};
 
 export const createUser = user => {
   const { username, password } = user;

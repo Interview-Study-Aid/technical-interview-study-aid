@@ -4,7 +4,7 @@ import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 // import Card from 'react-bootstrap/Card';
 import useForm from '../../../hooks/loginFormHook';
-import { createUser } from '../../../store/login';
+import { createUser, login } from '../../../store/login';
 import { Row, Col, InputGroup, FormControl } from 'react-bootstrap';
 
 const LoginForm = ({ createUser }) => {
@@ -25,6 +25,14 @@ const LoginForm = ({ createUser }) => {
     createUser(user);
   };
 
+  const handleLogin = e => {
+    let username = values.username;
+    let password = values.password;
+    const user = { username, password };
+    e.preventDefault();
+    login(user);
+  };
+
   const handleInputChange = e => {
     e.persist();
     console.log(`INPUT CHANGE HANDLER: ${e.target.name}: ${e.target.value}`);
@@ -32,7 +40,7 @@ const LoginForm = ({ createUser }) => {
   };
 
   return (
-    <Form onSubmit={handleSubmit}>
+    <Form onSubmit={handleLogin}>
       <Form.Row className="align-items-center">
         <Col xs="auto">
           <Form.Label htmlFor="inlineFormInput" srOnly>
@@ -80,7 +88,7 @@ const mapStateToProps = state => {
   };
 };
 
-const mapDispatchToProps = { createUser };
+const mapDispatchToProps = { createUser, login };
 
 export default connect(mapStateToProps, mapDispatchToProps)(LoginForm);
 
