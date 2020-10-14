@@ -6,10 +6,10 @@ import useForm from '../../../hooks/loginFormHook';
 import {Row, Col, InputGroup, FormControl} from 'react-bootstrap';
 
 const LoginForm = (props) => {
-  const { handleSubmit, handleInputChangeName,handleInputChangePassword } = useForm(props.handleSubmit);
+  const { handleSubmit, handleSignup, handleInputChangeName,handleInputChangePassword } = useForm(props.handleSubmit);
  
   return (
-    <Form onSubmit={handleSubmit}>
+    <Form >
   <Form.Row className="align-items-center">
     <Col xs="auto">
       <Form.Label htmlFor="inlineFormInput" srOnly>
@@ -32,12 +32,12 @@ const LoginForm = (props) => {
       </InputGroup>
     </Col>
     <Col xs="auto">
-      <Button type="submit" className="mb-2">
+      <Button type="submit" className="mb-2" onClick={handleSubmit}>
         Login
       </Button>
     </Col>
     <Col xs="auto">
-      <Button type="submit" className="mb-2">
+      <Button type="submit" className="mb-2" onClick={handleSignup}>
         SignUp
       </Button>
     </Col>
