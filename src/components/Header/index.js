@@ -10,7 +10,10 @@ const Header = props => {
     <>
       <Navbar bg="dark" variant="dark">
         <Navbar.Brand>Interview Study Aid</Navbar.Brand>
-        <Navbar.Text>Welcome, {props.userName}</Navbar.Text>
+        <Navbar.Text>
+          Welcome, {props.userName}. You are logged{' '}
+          {props.loggedIn ? 'IN' : 'OUT'}
+        </Navbar.Text>
       </Navbar>
     </>
   );

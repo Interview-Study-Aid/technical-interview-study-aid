@@ -10,6 +10,7 @@ export default (state = initialState, action) => {
 
   switch (type) {
     case 'LOGIN':
+      console.log('IN TYPE DEF:', type, payload);
       return {
         ...state,
         loggedIn: true,

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
-import { Row, Col, InputGroup, FormControl } from 'react-bootstrap';
+import { Col, InputGroup, FormControl } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import { setLogin, setLogout } from '../../../store/user';
 
@@ -29,7 +29,7 @@ const LoginForm = props => {
     // const url = `http://localhost:3000`;
     const url = `https://isa-server-401.herokuapp.com`;
     e.preventDefault();
-    // console.log('Are we getting here?');
+
     axios
       .get(`${url}/login`, {
         headers: {
@@ -37,7 +37,7 @@ const LoginForm = props => {
         },
       })
       .then(data => {
-        console.log('Sign In Data', data.data);
+        // console.log('Sign In Data', data.data);
         if (data.data.token) {
           localStorage.setItem('token', data.data.token);
           let loginData = data.data;
@@ -104,4 +104,7 @@ const LoginForm = props => {
   );
 };
 
+// const mapDispatchToProps = { setLogin, setLogout };
+
+// export default connect(mapDispatchToProps)(LoginForm);
 export default LoginForm;
