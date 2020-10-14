@@ -4,7 +4,7 @@ import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import { Row, Col, InputGroup, FormControl } from 'react-bootstrap';
 import { connect } from 'react-redux';
-import { setLogout } from '../../../store/user';
+import { setLogin, setLogout } from '../../../store/user';
 
 const LoginForm = props => {
   const [values, setValues] = useState({});
@@ -28,8 +28,8 @@ const LoginForm = props => {
   const handleSubmit = e => {
     // const url = `http://localhost:3000`;
     const url = `https://isa-server-401.herokuapp.com`;
-    console.log(e, 'login');
     e.preventDefault();
+    // console.log('Are we getting here?');
     axios
       .get(`${url}/login`, {
         headers: {
@@ -37,11 +37,11 @@ const LoginForm = props => {
         },
       })
       .then(data => {
+        console.log('Sign In Data', data.data);
         if (data.data.token) {
           localStorage.setItem('token', data.data.token);
-          // Call Login emitter here
-          console.log('DATA FROM SUBMIT', data.data);
-          // setLogin(data.data);
+          let loginData = data.data;
+          setLogin(loginData);
         }
       })
       .catch(er => console.log(er.message));
@@ -50,13 +50,11 @@ const LoginForm = props => {
   const handleInputChangeName = e => {
     e.persist();
     // e.preventDefault();
-    console.log(e);
     setValues(values => ({ ...values, userName: e.target.value }));
   };
 
   const handleInputChangePassword = e => {
     e.persist();
-    console.log(e);
     setValues(values => ({ ...values, userPassword: e.target.value }));
   };
 
@@ -96,23 +94,14 @@ const LoginForm = props => {
             SignUp
           </Button>
         </Col>
-        {/* <Col xs="auto">
+        <Col xs="auto">
           <Button type="submit" className="mb-2" onClick={setLogout}>
             Log Out
           </Button>
-        </Col> */}
+        </Col>
       </Form.Row>
     </Form>
   );
 };
 
-// const mapStateToProps = state => {
-//   return {
-//     userName: state.user.userName,
-//   };
-// };
-
-// const mapDispatchToProps = { setLogout };
-
-// export default connect(mapStateToProps, mapDispatchToProps)(LoginForm);
 export default LoginForm;

@@ -30,9 +30,6 @@ const Categories = ({ getCategories, selectCategory, categories, active }) => {
                 {eachCategory}
               </Card.Body>
             </Card>
-            // <li key={eachCategory} onClick={() => selectCategory(eachCategory)}>
-            //   {eachCategory}
-            // </li>
           );
         })}
       </ul>

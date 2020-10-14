@@ -12,7 +12,7 @@ import { selectQuestion, closeQuestion } from '../../../store/questions';
 import Detail from '../Detail';
 
 function parseQuestion(data) {
-  console.log('Data:', data);
+  // console.log('Data:', data);
   let target = data.questionAnswer;
   let parsedData = JSON.parse(target);
   return parsedData;
@@ -28,7 +28,6 @@ const Questions = ({
   selectQuestion,
   closeQuestion,
 }) => {
-  console.log('Test:', questions);
   return (
     <>
       <h2 className="title">

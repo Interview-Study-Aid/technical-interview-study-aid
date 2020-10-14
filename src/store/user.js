@@ -10,7 +10,12 @@ export default (state = initialState, action) => {
 
   switch (type) {
     case 'LOGIN':
-      return { ...state, loggedIn: true, userName: payload.userName };
+      return {
+        ...state,
+        loggedIn: true,
+        userName: payload.username,
+        token: payload.token,
+      };
 
     case 'LOGOUT':
       return { ...state, loggedIn: false, userName: 'Guest' };
@@ -23,6 +28,7 @@ export default (state = initialState, action) => {
 // ACTION
 export function setLogin(loginData) {
   // if verified, emit this
+  console.log('LOGIN DATA???', loginData);
   return {
     type: 'LOGIN',
     payload: loginData,
