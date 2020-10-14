@@ -13,7 +13,6 @@ const Main = () => {
       <Login />
       <Categories />
       <Questions />
-      {/* <Detail /> */}
     </>
   );
 };
