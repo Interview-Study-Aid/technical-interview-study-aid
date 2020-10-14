@@ -4,7 +4,7 @@ import React from 'react';
 const Footer = () => {
   return (
     <>
-      <h2>This is the footer</h2>
+      <h4>&copy; 2020 Jennifer Chinzi, Kateryna Shydlovska, &amp; Alex Whan</h4>
     </>
   );
 };
