@@ -19,7 +19,8 @@ export default (state = initialState, action) => {
     case 'SET_LOGIN':
       return { ...state, payload, isLoggedIn: true };
     case 'CREATE_USER':
-      return { ...state, profile: payload, formSubmitted: false };
+      console.log('CREATE USER PAYLOAD', payload, type);
+      return { ...state, profile: payload };
     default:
       return state;
   }
@@ -36,32 +37,46 @@ export const setLoginState = loginData => {
   };
 };
 
-export const login = loginInput => {
-  const { username, password } = loginInput;
-  const url = 'https://localhost:3000/login';
-  return async function (dispatch) {
-    const response = await axios.post(url, {
-      method: 'POST',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(loginInput),
-    });
+// export const login = loginInput => {
+//   const { username, password } = loginInput;
+//   const url = 'https://localhost:3000/login';
+//   return async function (dispatch) {
+//     const response = await axios.post(url, {
+//       method: 'POST',
+//       headers: {
+//         Accept: 'application/json',
+//         'Content-Type': 'application/json',
+//       },
+//       body: JSON.stringify(loginInput),
+//     });
 
-    const jsonResponse = response.json();
+//     const jsonResponse = response.json();
 
-    if (jsonResponse.msg === 'success') {
-      dispatch(setLoginState({ ...jsonResponse }));
-    } else {
-      console.log('LOGIN FAILED!!');
-    }
-  };
-};
+//     if (jsonResponse.msg === 'success') {
+//       dispatch(setLoginState({ ...jsonResponse }));
+//     } else {
+//       console.log('LOGIN FAILED!!');
+//     }
+//   };
+// };
 
 export const createUser = user => {
-  return {
-    type: 'CREATE_USER',
-    payload: user,
+  const { username, password } = user;
+  const url = 'https://isa-server-401.herokuapp.com/signup';
+  // const url = 'https://localhost:3000/signup';
+  return async function (dispatch) {
+    const response = await axios.post(url, {
+      url: url,
+      userName: username,
+      userPassword: password,
+    });
+
+    console.log('RESPONSE IN MY LOGIN THUNK??', response);
+    console.log('RESPONSE DATA', response.data);
+
+    dispatch({
+      type: 'CREATE_USER',
+      payload: response.data,
+    });
   };
 };

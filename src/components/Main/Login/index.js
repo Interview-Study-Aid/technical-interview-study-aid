@@ -4,9 +4,10 @@ import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 // import Card from 'react-bootstrap/Card';
 import useForm from '../../../hooks/loginFormHook';
+import { createUser } from '../../../store/login';
 import { Row, Col, InputGroup, FormControl } from 'react-bootstrap';
 
-const LoginForm = props => {
+const LoginForm = ({ createUser }) => {
   // const { handleInputChange } = useForm(props.handleSubmit);
 
   // const [username, setUsername] = useState('');
@@ -21,7 +22,7 @@ const LoginForm = props => {
     let password = values.password;
     const user = { username, password };
     e.preventDefault();
-    props.dispatch({ type: 'CREATE_USER', payload: user });
+    createUser(user);
   };
 
   const handleInputChange = e => {
@@ -79,7 +80,9 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps)(LoginForm);
+const mapDispatchToProps = { createUser };
+
+export default connect(mapStateToProps, mapDispatchToProps)(LoginForm);
 
 // import React, { useState } from 'react';
 // import Form from 'react-bootstrap/Form';
