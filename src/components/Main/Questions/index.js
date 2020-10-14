@@ -11,7 +11,7 @@ import './questions.scss';
 import { selectQuestion, closeQuestion } from '../../../store/questions';
 import Detail from '../Detail';
 
-function parseQuestion(data){
+function parseQuestion(data) {
   console.log('Data:', data);
   let target = data.questionAnswer;
   let parsedData = JSON.parse(target);
@@ -19,45 +19,51 @@ function parseQuestion(data){
 }
 
 // let parsedData = JSON.parse(response.data[0].questionAnswer);
-    // console.log('Parsed Question:', parsedData.question);
+// console.log('Parsed Question:', parsedData.question);
 
-const Questions = ({ questions, activeQuestion, activeCategory, selectQuestion, closeQuestion }) => {
+const Questions = ({
+  questions,
+  activeQuestion,
+  activeCategory,
+  selectQuestion,
+  closeQuestion,
+}) => {
   // console.log('Test:', questions);
   return (
     <>
-      <h2 className="title">{ activeCategory ? activeCategory[0].category : 'Test' } Questions Component</h2>
-      <ul 
-      style={{display: 'flex', flexDirection: 'row'}}
-      >
+      <h2 className="title">
+        {activeCategory ? activeCategory[0].category : 'Test'} Questions
+        Component
+      </h2>
+      <ul style={{ display: 'flex', flexDirection: 'row' }}>
         {questions.map(eachQuestion => {
           return (
-          // <li key={eachQuestion.id} onClick={() => selectQuestion(eachQuestion)}>{parseQuestion(eachQuestion).question}</li>
-          <Card 
-          className="eachQuestion"
-          border="primary"
-          style={{ width: '18rem'}}
-          bg="primary"
-          >
-            <Card.Body>
-              <Card.Title>{parseQuestion(eachQuestion).question}</Card.Title>
-              <Button
-                className="viewDetailButton"
-                onClick={() => selectQuestion(eachQuestion)}
-              >
-              View Details
-              </Button>
-            </Card.Body>
-            <Card.Footer>
-              <small>
-                Category: {activeCategory ? activeCategory[0].category : null}
-              </small>
-            </Card.Footer>
-          </Card>
-          )
+            // <li key={eachQuestion.id} onClick={() => selectQuestion(eachQuestion)}>{parseQuestion(eachQuestion).question}</li>
+            <Card
+              className="eachQuestion"
+              border="primary"
+              style={{ width: '18rem' }}
+              bg="primary"
+              key={eachQuestion.id}
+            >
+              <Card.Body>
+                <Card.Title>{parseQuestion(eachQuestion).question}</Card.Title>
+                <Button
+                  className="viewDetailButton"
+                  onClick={() => selectQuestion(eachQuestion)}
+                >
+                  View Details
+                </Button>
+              </Card.Body>
+              <Card.Footer>
+                <small>
+                  Category: {activeCategory ? activeCategory[0].category : null}
+                </small>
+              </Card.Footer>
+            </Card>
+          );
         })}
       </ul>
-
-
 
       {activeQuestion ? <Detail /> : 'No active question'}
     </>
@@ -70,8 +76,8 @@ const mapStateToProps = state => {
     activeQuestion: state.questions.activeQuestion,
     showModal: state.questions.showModal,
     activeCategory: state.categories.activeCategory,
-  }
-}
+  };
+};
 
 const mapDispatchToProps = { selectQuestion, closeQuestion };
 
