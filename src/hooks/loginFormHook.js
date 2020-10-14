@@ -1,26 +1,52 @@
 import { useState } from 'react';
+const axios = require('axios');
+
 
 const useForm = callback => {
   const [values, setValues] = useState({});
 
-  console.log(values, 'values here');
+
+  const handleSignup = e => {
+    e.preventDefault();
+    axios({
+      method: 'post',
+      url: 'http://localhost:3000/signup',
+      data: {
+        userName: values.userName,
+        userPassword: values.userPassword,
+      }
+    }).then(data => console.log(data)).then();
+  }
+
 
   const handleSubmit = e => {
-    if(e){
-      e.preventDefault();
-      console.log(e, 'event')
-
-    }
-    e.target.reset();
-    callback(values);
+    console.log(e, 'login')
+    e.preventDefault();
+    axios.get('http://localhost:3000/login', {
+      headers: {
+        Authorization:  `Bearer ${values.userName}:${values.userPassword}`
+      }
+     }).then(data => {
+       if(data.data.token){
+        localStorage.setItem("token", data.data.token);
+       }}).catch(er => console.log(er.message))
   };
 
-  const handleInputChange = e => {
+  const handleInputChangeName = e => {
     e.persist();
-    setValues(values => ({ ...values, [e.target.name]: e.target.value }));
+    // e.preventDefault();
+    console.log(e);
+    setValues(values => ({ ...values, "userName": e.target.value }));
   };
 
-  return { handleSubmit, handleInputChange, values };
+
+  const handleInputChangePassword = e => {
+    e.persist();
+    console.log(e);
+    setValues(values => ({ ...values, "userPassword": e.target.value }));
+  };
+
+  return { handleSubmit, handleSignup, handleInputChangeName, handleInputChangePassword, values };
 };
 
 export default useForm;
