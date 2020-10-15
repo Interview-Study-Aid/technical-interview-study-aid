@@ -6,18 +6,15 @@ import Button from 'react-bootstrap/Button';
 import { connect } from 'react-redux';
 
 const Notes = ({ userToken, activeQuestion, userNotes }) => {
-  // if the userNotes state array contains/includes the active question id, we need to use that as the noteText state - else, blank
-
-  // conditionally setting state with React?
-  // What is the shape of activeQuestion? Does it have "notes"?
-  // match activeQuestion with userNotes
-
   // note.questionId, note.note
-
   const [noteText, setNoteText] = useState('');
-  if (userNotes.includes(activeQuestion.id)) {
-    setNoteText(userNotes.text);
-    // We need to know this exact shape
+
+  // if the userNotes state array contains/includes the active question id, we need to use that as the noteText state - else, blank
+  if (userNotes) {
+    let existingNote = userNotes.filter(
+      note => note.questionId === activeQuestion.id
+    );
+    setNoteText(existingNote.note); // need to be like "existingNote.text" or "existingNote.note" - or something similar
   }
 
   // This will continually set the "noteText" state to be equal to the value of the input, and vice versa
@@ -27,44 +24,17 @@ const Notes = ({ userToken, activeQuestion, userNotes }) => {
     setNoteText(value);
   };
 
-  // How do we SEND something to the back end?
-
-  // const saveNote = async (noteText, id) => {
-  //   // const url = `https://isa-server-401.herokuapp.com`;
-  //   const url = `http://localhost:3000`;
-
-  //   console.log('QUESTION ID COMIN IN HOT', id);
-
-  //   const note = { questionID: id, text: noteText };
-
-  //   console.log('NOTE OBJECT???', note);
-
-  //   const data = {
-  //     jwt: userToken,
-  //     note,
-  //   };
-
-  //   console.log('NOTE DATA OBJECT TO SEND??', data);
-
-  //   try {
-  //     const response = await axios.post(`${url}/addNote`, data);
-  //   } catch (err) {
-  //     console.log(err.message);
-  //   }
-
-  //   // console.log('RES???', response);
-  // };
-
   const saveNote = async (noteText, activeQuestion) => {
-    const url = `https://isa-server-401.herokuapp.com`;
-    // const url = `http://localhost:3000`;
+    // const url = `https://isa-server-401.herokuapp.com`;
+    const url = `http://localhost:3000`;
 
-    console.log('ACTIVE QQQQQ', activeQuestion);
+    console.log('ACTIVE QUESTION TO SAVE NOTE TO: ', activeQuestion);
+
     const rawNotes = { questionId: activeQuestion.id, note: noteText };
     const notes = JSON.stringify(rawNotes);
     const jwt = userToken;
 
-    console.log('NOTES TO SEND TO ADD:', notes, jwt);
+    console.log('NOTES TO SEND TO /addNote ROUTE:', notes, jwt);
 
     axios({
       method: 'post',
@@ -73,18 +43,7 @@ const Notes = ({ userToken, activeQuestion, userNotes }) => {
         jwt,
         notes,
       },
-    }).then(data => console.log('NOTE RESPONSE FROM SERVER:', data));
-
-    // const data = {
-    //   jwt: userToken,
-    //   note,
-    // };
-
-    // console.log('NOTE DATA OBJECT TO SEND??', data);
-
-    // const response = await axios.post(`${url}/addNote`, data);
-
-    // console.log('RES???', response);
+    }).then(data => console.log('NOTE RESPONSE FROM SERVER: ', data));
   };
 
   return (

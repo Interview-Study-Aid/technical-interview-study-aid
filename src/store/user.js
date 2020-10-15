@@ -51,25 +51,56 @@ export function setLogout() {
   };
 }
 
+// This is still not yet working
+// export function getAllNotesForUser(token) {
+//   console.log('GET ALL NOTES FUNCTION', token);
+//   // const url = 'https://isa-server-401.herokuapp.com';
+//   const url = 'https://localhost:3000';
+
+//   return async function (dispatch) {
+//     const response = await axios.get(`${url}/notes`, {
+//       data: {
+//         jwt: token,
+//       },
+//     });
+
+//     const notesBack = response.data;
+
+//     console.log('NOTES BACK FOR USER!', notesBack);
+
+//     dispatch({
+//       type: 'GET_NOTES',
+//       payload: notesBack,
+//     });
+//   };
+// }
+
 export function getAllNotesForUser(token) {
   console.log('GET ALL NOTES FUNCTION', token);
   // const url = 'https://isa-server-401.herokuapp.com';
   const url = 'https://localhost:3000';
 
-  return async function (dispatch) {
-    const response = await axios.get(`${url}/notes`, {
-      data: {
-        jwt: token,
-      },
-    });
+  const jwt = token;
 
-    const notesBack = response.data;
+  return async function (dispatch) {
+    const response = await axios({
+      // can we even await this?
+      method: 'get',
+      url: `${url}/notes`,
+      data: {
+        jwt,
+      },
+    })
+      .then(data => console.log('NOTE GET RESPONSE>>>>> ', data))
+      .catch(err => console.log(err));
+
+    const notesBack = response;
 
     console.log('NOTES BACK FOR USER!', notesBack);
 
     dispatch({
       type: 'GET_NOTES',
-      payload: notesBack,
+      payload: response, // notesBack
     });
   };
 }
