@@ -4,9 +4,9 @@ import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import { Col, InputGroup, FormControl } from 'react-bootstrap';
 import { connect } from 'react-redux';
-import { setLogin, setLogout } from '../../../store/user';
+import { setLogin, setLogout, getAllNotesForUser } from '../../../store/user';
 
-const LoginForm = ({ setLogin, setLogout, isLoggedIn }) => {
+const LoginForm = ({ setLogin, setLogout, isLoggedIn, getAllNotesForUser }) => {
   const [values, setValues] = useState({});
 
   const handleSignup = e => {
@@ -42,6 +42,7 @@ const LoginForm = ({ setLogin, setLogout, isLoggedIn }) => {
           localStorage.setItem('token', data.data.token);
           let loginData = data.data;
           setLogin(loginData);
+          getAllNotesForUser(loginData.token);
         }
       })
       .catch(err => console.log(err.message));
@@ -131,7 +132,7 @@ const LoginForm = ({ setLogin, setLogout, isLoggedIn }) => {
 
 // };
 
-const mapDispatchToProps = { setLogin, setLogout };
+const mapDispatchToProps = { setLogin, setLogout, getAllNotesForUser };
 
 const mapStateToProps = state => {
   return {
