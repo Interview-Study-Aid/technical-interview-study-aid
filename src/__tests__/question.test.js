@@ -7,16 +7,22 @@ it('should have initial state', () => {
 });
 
 it('should be able to switch active questions', () => {
-  const state = reducer(undefined, {type: 'SELECT_QUESTION', payload:{category: 'JavaScript', id: '1', questionAnswer:'{}' }});
+  const state = reducer(undefined, {
+    type: 'SELECT_QUESTION',
+    payload: { category: 'JavaScript', id: '1', questionAnswer: '{}' },
+  });
   expect(state.activeQuestion.category).toBe('JavaScript');
   expect(state.activeQuestion.id).toBe('1');
 });
 
 it('should be able to clear the active question', () => {
-  let state = reducer(undefined, {type: 'SELECT_QUESTION', payload:{category: 'JavaScript', id: '1', questionAnswer:'{}' }});
+  let state = reducer(undefined, {
+    type: 'SELECT_QUESTION',
+    payload: { category: 'JavaScript', id: '1', questionAnswer: '{}' },
+  });
   expect(state.activeQuestion.category).toBe('JavaScript');
   expect(state.activeQuestion.id).toBe('1');
-  state = reducer(undefined, {type: 'CLOSE_QUESTION', payload: null})
+  state = reducer(undefined, { type: 'CLOSE_QUESTION', payload: null });
   expect(state.activeQuestion.category).toBe('');
 });
 
