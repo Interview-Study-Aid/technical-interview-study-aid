@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
@@ -7,27 +7,34 @@ import { connect } from 'react-redux';
 import '../Detail/detail.scss'
 
 const Notes = ({ userToken, activeQuestion, userNotes }) => {
-  // note.questionId, note.note
   const [noteText, setNoteText] = useState('');
+  const prevText = useRef('');
 
-  // if the userNotes state array contains/includes the active question id, we need to use that as the noteText state - else, blank
-  if (userNotes) {
+  // Will check all existing notes (if any) to see if any match the current question id, and will pre-populate the notes form field if so
+  useEffect(() => {
     let existingNote = userNotes.filter(
       note => note.questionId === activeQuestion.id
     );
-    setNoteText(existingNote.note); // need to be like "existingNote.text" or "existingNote.note" - or something similar
-  }
 
-  // This will continually set the "noteText" state to be equal to the value of the input, and vice versa
+    console.log('MY SOON-TO-BE NOTE TEXT: ', existingNote);
+
+    if (existingNote.length > 0) {
+      prevText.current = existingNote[0].note;
+      // setNoteText(myNoteText); // getting infinite re-render here
+      console.log('TEXT???', prevText.current);
+      setNoteText(prevText.current);
+    }
+  }, []);
+
   const handleNotesInput = e => {
-    const { name, value } = e.target;
+    const { value } = e.target;
     e.persist();
     setNoteText(value);
   };
 
   const saveNote = async (noteText, activeQuestion) => {
-    // const url = `https://isa-server-401.herokuapp.com`;
-    const url = `http://localhost:3000`;
+    const url = `https://isa-server-401.herokuapp.com`;
+    // const url = `http://localhost:3000`;
 
     console.log('ACTIVE QUESTION TO SAVE NOTE TO: ', activeQuestion);
 

@@ -1,8 +1,3 @@
-// Questions
-
-// Should render individual questions filtered based on the category chosen
-//    Each question should be clickable/selectable to open a details view modal (https://react-bootstrap.github.io/components/modal/)
-
 import React from 'react';
 import { connect } from 'react-redux';
 import Card from 'react-bootstrap/Card';
@@ -12,14 +7,10 @@ import { selectQuestion, closeQuestion } from '../../../store/questions';
 import Detail from '../Detail';
 
 function parseQuestion(data) {
-  // console.log('Data:', data);
   let target = data.questionAnswer;
   let parsedData = JSON.parse(target);
   return parsedData;
 }
-
-// let parsedData = JSON.parse(response.data[0].questionAnswer);
-// console.log('Parsed Question:', parsedData.question);
 
 const Questions = ({
   questions,
