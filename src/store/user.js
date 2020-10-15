@@ -83,14 +83,18 @@ export function getAllNotesForUser(token) {
   const jwt = token;
 
   return async function (dispatch) {
-    const response = await axios({
+    const req = {
       // can we even await this?
       method: 'get',
       url: `${url}/notes`,
       data: {
         jwt,
       },
-    })
+    };
+
+    console.log('REQQQQQQ?', req);
+
+    const response = await axios(req)
       .then(data => console.log('NOTE GET RESPONSE>>>>> ', data))
       .catch(err => console.log(err));
 
