@@ -5,6 +5,7 @@ import Button from 'react-bootstrap/Button';
 import { Col, InputGroup, FormControl } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import { setLogin, setLogout, getAllNotesForUser } from '../../../store/user';
+import './login.scss';
 
 const LoginForm = ({ setLogin, setLogout, isLoggedIn, getAllNotesForUser }) => {
   const [values, setValues] = useState({});
@@ -52,6 +53,7 @@ const LoginForm = ({ setLogin, setLogout, isLoggedIn, getAllNotesForUser }) => {
     e.persist();
     // e.preventDefault();
     setValues(values => ({ ...values, userName: e.target.value }));
+    // reset() -- potential placement 
   };
 
   const handleInputChangePassword = e => {
@@ -115,7 +117,10 @@ const LoginForm = ({ setLogin, setLogout, isLoggedIn, getAllNotesForUser }) => {
   } else {
     return (
       <>
-        <Col xs="auto">
+        <Col 
+        xs="auto"
+        className="signout"
+        >
           <Button
             type="submit"
             className="mb-2"
