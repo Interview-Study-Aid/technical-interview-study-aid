@@ -10,6 +10,7 @@ import React, { Children, useState } from 'react';
 import { connect } from 'react-redux';
 import { Modal } from 'react-bootstrap';
 import { closeQuestion } from '../../../store/questions';
+import { getAllNotesForUser } from '../../../store/user';
 import Notes from '../Notes';
 
 function parseQuestion(data) {
@@ -24,7 +25,14 @@ function parseQuestion(data) {
 // activeQuestion.notes - assuming they match with the user?
 // Do a check for the notes to see if they exist, and check the user?
 
-const Detail = ({ showModal, questionObject, closeQuestion, isLoggedIn }) => {
+const Detail = ({
+  showModal,
+  questionObject,
+  closeQuestion,
+  isLoggedIn,
+  getAllNotesForUser,
+  token,
+}) => {
   const showHideClassName = showModal
     ? 'modal display-block'
     : 'modal display-none';
@@ -38,10 +46,12 @@ const Detail = ({ showModal, questionObject, closeQuestion, isLoggedIn }) => {
 
   function toggleNotes() {
     setHideNotes(!hideNotes);
+    getAllNotesForUser(token);
   }
 
   function closeAndReset() {
     closeQuestion();
+    getAllNotesForUser(token);
     setHideAnswer(true);
   }
 
@@ -100,9 +110,10 @@ const mapStateToProps = state => {
     questionObject: state.questions.activeQuestion,
     showModal: state.questions.showModal,
     isLoggedIn: state.user.loggedIn,
+    token: state.user.token,
   };
 };
 
-const mapDispatchToProps = { closeQuestion };
+const mapDispatchToProps = { closeQuestion, getAllNotesForUser };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Detail);
