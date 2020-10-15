@@ -56,16 +56,22 @@ const Notes = ({ userToken, activeQuestion, userNotes }) => {
   // };
 
   const saveNote = async (noteText, activeQuestion) => {
-    // const url = `https://isa-server-401.herokuapp.com`;
-    const url = `http://localhost:3000`;
-    const note = { questionID: activeQuestion.id, text: noteText };
+    const url = `https://isa-server-401.herokuapp.com`;
+    // const url = `http://localhost:3000`;
+
+    console.log('ACTIVE QQQQQ', activeQuestion);
+    const rawNotes = { questionId: activeQuestion.id, note: noteText };
+    const notes = JSON.stringify(rawNotes);
+    const jwt = userToken;
+
+    console.log('NOTES TO SEND TO ADD:', notes, jwt);
 
     axios({
       method: 'post',
       url: `${url}/addNote`,
       data: {
-        jwt: userToken,
-        note,
+        jwt,
+        notes,
       },
     }).then(data => console.log('NOTE RESPONSE FROM SERVER:', data));
 
@@ -92,10 +98,7 @@ const Notes = ({ userToken, activeQuestion, userNotes }) => {
           onChange={handleNotesInput}
         ></Form.Control>
       </Form>
-      <Button
-        variant="info"
-        onClick={() => saveNote(noteText, activeQuestion.id)}
-      >
+      <Button variant="info" onClick={() => saveNote(noteText, activeQuestion)}>
         Make Me Save the Notes
       </Button>
     </>
