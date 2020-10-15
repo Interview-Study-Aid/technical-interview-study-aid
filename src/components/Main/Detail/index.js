@@ -67,7 +67,7 @@ const Detail = ({ showModal, questionObject, closeQuestion, isLoggedIn }) => {
           <br />
           <button onClick={toggleNotes}>View Notes</button>
           <br />
-          {!hideNotes && <Notes props={questionObject} />}
+          {!hideNotes && <Notes />}
           <br />
           <button onClick={closeAndReset}>Close</button>
         </section>

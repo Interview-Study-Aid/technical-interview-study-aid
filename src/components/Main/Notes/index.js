@@ -5,7 +5,7 @@ import Button from 'react-bootstrap/Button';
 // import { Col, InputGroup, FormControl } from 'react-bootstrap';
 import { connect } from 'react-redux';
 
-const Notes = ({ isLoggedIn, username, userToken, questionObject }) => {
+const Notes = ({ isLoggedIn, username, userToken, id }) => {
   // Will probably need to just take in TEXT as props
 
   const [noteText, setNoteText] = useState('');
@@ -19,10 +19,12 @@ const Notes = ({ isLoggedIn, username, userToken, questionObject }) => {
 
   // How do we SEND something to the back end?
 
-  const saveNote = async (noteText, questionObject) => {
+  const saveNote = async (noteText, id) => {
     const url = `https://isa-server-401.herokuapp.com`;
 
-    const note = { questionID: questionObject.id, text: noteText };
+    console.log('QUESTION ID COMIN IN HOT', id);
+
+    const note = { questionID: id, text: noteText };
 
     console.log('NOTE OBJECT???', note);
 
@@ -36,12 +38,6 @@ const Notes = ({ isLoggedIn, username, userToken, questionObject }) => {
     const res = await axios.post(`${url}/addNote`, data);
 
     console.log('RES???', res);
-
-    // axios.post({
-    //   method: 'POST'.
-    //   url: `${url}/addNote`,
-    //   data: req
-    // })
   };
 
   return (
@@ -55,7 +51,7 @@ const Notes = ({ isLoggedIn, username, userToken, questionObject }) => {
           onChange={handleNotesInput}
         ></Form.Control>
       </Form>
-      <Button variant="info" onClick={saveNote}>
+      <Button variant="info" onClick={() => saveNote(noteText, id)}>
         Make Me Save the Notes
       </Button>
     </>
@@ -67,6 +63,7 @@ const mapStateToProps = state => {
     isLoggedIn: state.user.loggedIn,
     username: state.user.userName,
     userToken: state.user.token,
+    id: state.questions.activeQuestion.id,
   };
 };
 
