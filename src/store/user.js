@@ -26,8 +26,8 @@ export default (state = initialState, action) => {
       return { ...state, loggedIn: false, userName: 'Guest' };
 
     case 'GET_NOTES':
-      console.log('hereeeeeee')
-      return { ...state, userNotes: payload };
+      console.log('hereeeeeee');
+      return { ...state, userNotes: payload }; // we can do this here
 
     default:
       return state;
@@ -79,15 +79,26 @@ export function setLogout() {
 export function getAllNotesForUser(token) {
   console.log('GET ALL NOTES FUNCTION', token);
   // const url = 'https://isa-server-401.herokuapp.com';
-  // const url = 'http://localhost:3000';
+  const url = 'http://localhost:3000';
 
-  axios({
-    method: 'get',
-    url: `http://localhost:3000/notes/${token}`,
-  })
-    .then(function (response) {
-      console.log(response)
+  return async function (dispatch) {
+    let responseFromGetNotes;
+
+    await axios({
+      method: 'get',
+      url: `${url}/notes/${token}`,
+    }).then(function (response) {
+      console.log('RESPONSE FROM GET NOTES>>>>>>', response.data);
+      responseFromGetNotes = response.data;
     });
+
+    console.log('RESPONSE FROM GET NOTES!!!!!!', responseFromGetNotes);
+
+    dispatch({
+      type: 'GET_NOTES',
+      payload: responseFromGetNotes, // responseFromGetNotes // notesBack
+    });
+  };
 
   // const jwt = token;
   // console.log(jwt, 'jwt!!!!!!!!!!!!!!!!!!!!!!!!!')
@@ -104,14 +115,13 @@ export function getAllNotesForUser(token) {
 
   //   console.log('REQQQQQQ?', req);
 
-    // const response = await axios(req)
-    //   .then(data => console.log('NOTE GET RESPONSE>>>>> ', data))
-    //   .catch(err => console.log(err));
+  // const response = await axios(req)
+  //   .then(data => console.log('NOTE GET RESPONSE>>>>> ', data))
+  //   .catch(err => console.log(err));
 
-    // console.log(response);
+  // console.log(response);
 
-    
-    // const notesBack = response;
+  // const notesBack = response;
 
   //   console.log('NOTES BACK FOR USER!', notesBack);
 

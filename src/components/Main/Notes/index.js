@@ -8,14 +8,27 @@ import { connect } from 'react-redux';
 const Notes = ({ userToken, activeQuestion, userNotes }) => {
   // note.questionId, note.note
   const [noteText, setNoteText] = useState('');
+  console.log('USER NOTES IN THE NOTES BABY', userNotes);
+
+  let existingNote = userNotes.filter(
+    note => note.questionId === activeQuestion.id
+  );
+
+  console.log('MY SOON TO BE NOTE TEXT: ', existingNote);
+
+  if (existingNote) {
+    let myNotes = existingNote[0].note;
+    // setNoteText(myNotes); // getting infinite re-render here
+    console.log('TEXT???', myNotes);
+  }
 
   // if the userNotes state array contains/includes the active question id, we need to use that as the noteText state - else, blank
-  if (userNotes) {
-    let existingNote = userNotes.filter(
-      note => note.questionId === activeQuestion.id
-    );
-    setNoteText(existingNote.note); // need to be like "existingNote.text" or "existingNote.note" - or something similar
-  }
+  // if (userNotes) {
+  //   let existingNote = userNotes.filter(
+  //     note => note.questionId === activeQuestion.id
+  //   );
+  //   setNoteText(existingNote.note); // need to be like "existingNote.text" or "existingNote.note" - or something similar
+  // }
 
   // This will continually set the "noteText" state to be equal to the value of the input, and vice versa
   const handleNotesInput = e => {
