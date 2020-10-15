@@ -1,8 +1,9 @@
+/* eslint-disable indent */
 import axios from 'axios';
 
 const initialState = {
-  categories: ['category1', 'category2', 'category3'],
-  activeCategory: {},
+  categories: [],
+  activeCategory: 'General',
 };
 
 // Reducer
@@ -11,14 +12,14 @@ export default (state = initialState, action) => {
   const { type, payload } = action;
 
   switch (type) {
-  case 'CHANGE_CATEGORY':
-    return { ...state, activeCategory: payload };
+    case 'CHANGE_CATEGORY':
+      return { ...state, activeCategory: payload };
 
-  case 'GET_CATEGORIES':
-    return { ...state, categories: payload };
+    case 'GET_CATEGORIES':
+      return { ...state, categories: payload };
 
-  default:
-    return state;
+    default:
+      return state;
   }
 };
 
@@ -30,7 +31,9 @@ export const selectCategory = category => {
       `https://isa-server-401.herokuapp.com/categories/${category}`
       // `https://localhost:3000/categories/${category}`
     );
-    console.log('selectCategory RESPONSE', response.data);
+
+    console.log('CATEGORY::', category);
+    // console.log('selectCategory RESPONSE', response.data);
     // let parsedData = JSON.parse(response.data[0].questionAnswer);
     // console.log('Parsed Question:', parsedData.question);
     dispatch({
@@ -42,10 +45,12 @@ export const selectCategory = category => {
 
 export function getCategories() {
   return async function (dispatch) {
-    const response = await axios.get('https://isa-server-401.herokuapp.com/categories/');
-    // const response = await axios.get('https://localhost:3000/categories/');    
+    const response = await axios.get(
+      'https://isa-server-401.herokuapp.com/categories/'
+    );
+    // const response = await axios.get('https://localhost:3000/categories/');
 
-    console.log('getCategories RESPONSE', response);
+    // console.log('getCategories RESPONSE', response);
 
     let categories = response.data;
     let filteredArray = [];

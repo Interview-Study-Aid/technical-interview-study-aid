@@ -7,6 +7,8 @@
 
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
+import Card from 'react-bootstrap/Card';
+import './categories.scss';
 import { getCategories, selectCategory } from '../../../store/categories';
 
 const Categories = ({ getCategories, selectCategory, categories, active }) => {
@@ -18,13 +20,17 @@ const Categories = ({ getCategories, selectCategory, categories, active }) => {
 
   return (
     <>
-      <h2>Categories Component</h2>
-      <ul>
+      <h2 className="c_title">Available Categories</h2>
+      <ul 
+      className="categories"
+      style={{ display: 'flex', flexDirection: 'row' }}>
         {categories.map(eachCategory => {
           return (
-            <li key={eachCategory} onClick={() => selectCategory(eachCategory)}>
-              {eachCategory}
-            </li>
+            <Card className="eachCategory" key={eachCategory}>
+              <Card.Body onClick={() => selectCategory(eachCategory)}>
+                {eachCategory}
+              </Card.Body>
+            </Card>
           );
         })}
       </ul>
