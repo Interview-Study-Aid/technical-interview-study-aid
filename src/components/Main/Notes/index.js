@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
@@ -6,33 +6,27 @@ import Button from 'react-bootstrap/Button';
 import { connect } from 'react-redux';
 
 const Notes = ({ userToken, activeQuestion, userNotes }) => {
-  // note.questionId, note.note
   const [noteText, setNoteText] = useState('');
-  console.log('USER NOTES IN THE NOTES BABY', userNotes);
+  const prevText = useRef('');
 
-  let existingNote = userNotes.filter(
-    note => note.questionId === activeQuestion.id
-  );
+  // Will check all existing notes (if any) to see if any match the current question id, and will pre-populate the notes form field if so
+  useEffect(() => {
+    let existingNote = userNotes.filter(
+      note => note.questionId === activeQuestion.id
+    );
 
-  console.log('MY SOON TO BE NOTE TEXT: ', existingNote);
+    console.log('MY SOON-TO-BE NOTE TEXT: ', existingNote);
 
-  if (existingNote) {
-    let myNotes = existingNote[0].note;
-    // setNoteText(myNotes); // getting infinite re-render here
-    console.log('TEXT???', myNotes);
-  }
+    if (existingNote.length > 0) {
+      prevText.current = existingNote[0].note;
+      // setNoteText(myNoteText); // getting infinite re-render here
+      console.log('TEXT???', prevText.current);
+      setNoteText(prevText.current);
+    }
+  }, []);
 
-  // if the userNotes state array contains/includes the active question id, we need to use that as the noteText state - else, blank
-  // if (userNotes) {
-  //   let existingNote = userNotes.filter(
-  //     note => note.questionId === activeQuestion.id
-  //   );
-  //   setNoteText(existingNote.note); // need to be like "existingNote.text" or "existingNote.note" - or something similar
-  // }
-
-  // This will continually set the "noteText" state to be equal to the value of the input, and vice versa
   const handleNotesInput = e => {
-    const { name, value } = e.target;
+    const { value } = e.target;
     e.persist();
     setNoteText(value);
   };
