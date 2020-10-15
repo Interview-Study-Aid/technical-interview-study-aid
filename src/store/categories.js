@@ -29,7 +29,6 @@ export const selectCategory = category => {
   return async function (dispatch) {
     let response = await axios.get(
       `https://isa-server-401.herokuapp.com/categories/${category}`
-      // `https://localhost:3000/categories/${category}`
     );
 
     dispatch({
@@ -44,7 +43,6 @@ export function getCategories() {
     const response = await axios.get(
       'https://isa-server-401.herokuapp.com/categories/'
     );
-    // const response = await axios.get('https://localhost:3000/categories/');
 
     let categories = response.data;
     let filteredArray = [];
