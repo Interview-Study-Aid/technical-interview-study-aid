@@ -88,12 +88,22 @@ const LoginForm = ({ setLogin, setLogout, isLoggedIn }) => {
                   </InputGroup>
                 </Col>
                 <Col xs="auto">
-                  <Button type="submit" className="mb-2" onClick={handleSubmit}>
+                  <Button 
+                  type="submit" 
+                  className="mb-2" 
+                  onClick={handleSubmit}
+                  variant="secondary"
+                  >
                     Login
                   </Button>
                 </Col>
                 <Col xs="auto">
-                  <Button type="submit" className="mb-2" onClick={handleSignup}>
+                  <Button 
+                  type="submit" 
+                  className="mb-2" 
+                  onClick={handleSignup}
+                  variant="outline-secondary"
+                  >
                     Sign Up
                   </Button>
                 </Col>
@@ -105,7 +115,12 @@ const LoginForm = ({ setLogin, setLogout, isLoggedIn }) => {
         return (
           <> 
             <Col xs="auto">
-              <Button type="submit" className="mb-2" onClick={setLogout}>
+              <Button 
+              type="submit" 
+              className="mb-2" 
+              onClick={setLogout}
+              variant="secondary"
+              >
                 Log Out
               </Button>
             </Col>        

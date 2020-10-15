@@ -33,7 +33,10 @@ const Questions = ({
       <h2 className="q_title">
         {(activeCategory[0].category === undefined) ? 'Please Select a Category' : `${activeCategory[0].category} Questions`}
       </h2>
-      <ul style={{ display: 'flex', flexDirection: 'row' }}>
+      <ul 
+      className="q_ul"
+      style={{ display: 'flex', flexDirection: 'row' }}
+      >
         {questions.map(eachQuestion => {
           return (
             // <li key={eachQuestion.id} onClick={() => selectQuestion(eachQuestion)}>{parseQuestion(eachQuestion).question}</li>
@@ -48,6 +51,7 @@ const Questions = ({
                 <Card.Title>{parseQuestion(eachQuestion).question}</Card.Title>
                 <Button
                   className="viewDetailButton"
+                  variant="light"
                   onClick={() => selectQuestion(eachQuestion)}
                 >
                   View Details

@@ -1,16 +1,18 @@
 .c_title {
-  background-color: #1FA896;
+  background-color: #3096A6;
   color: whitesmoke;
   text-align: center;
 }
 
 .categories {
-  align-items: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
 }
 
 .eachCategory {
   color: darkcyan;
   margin: 1vw;
-  display: flex;
-  flex-wrap: wrap;
+  width: 8em;
+  text-align: center;
 }
