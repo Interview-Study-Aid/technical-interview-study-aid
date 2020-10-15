@@ -48,8 +48,8 @@ export function setLogout() {
 
 export function getAllNotesForUser(token) {
   console.log('GET ALL NOTES FUNCTION', token);
-  // const url = 'https://isa-server-401.herokuapp.com';
-  const url = 'http://localhost:3000';
+  const url = 'https://isa-server-401.herokuapp.com';
+  // const url = 'http://localhost:3000';
 
   return async function (dispatch) {
     let responseFromGetNotes;

@@ -20,11 +20,6 @@ function parseQuestion(data) {
   return parsedData;
 }
 
-// questionObject = activeQuestion
-// will need activeQuestion.id to get the appropriate Notes
-// activeQuestion.notes - assuming they match with the user?
-// Do a check for the notes to see if they exist, and check the user?
-
 const Detail = ({
   showModal,
   questionObject,

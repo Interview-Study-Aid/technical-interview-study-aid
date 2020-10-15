@@ -10,8 +10,8 @@ const LoginForm = ({ setLogin, setLogout, isLoggedIn, getAllNotesForUser }) => {
   const [values, setValues] = useState({});
 
   const handleSignup = e => {
-    const url = `http://localhost:3000`;
-    // const url = `https://isa-server-401.herokuapp.com`;
+    const url = `https://isa-server-401.herokuapp.com`;
+    // const url = `http://localhost:3000`;
     e.preventDefault();
     axios({
       method: 'post',
@@ -26,8 +26,8 @@ const LoginForm = ({ setLogin, setLogout, isLoggedIn, getAllNotesForUser }) => {
   };
 
   const handleSubmit = e => {
-    const url = `http://localhost:3000`;
-    // const url = `https://isa-server-401.herokuapp.com`;
+    const url = `https://isa-server-401.herokuapp.com`;
+    // const url = `http://localhost:3000`;
     e.preventDefault();
 
     axios
@@ -130,8 +130,6 @@ const LoginForm = ({ setLogin, setLogout, isLoggedIn, getAllNotesForUser }) => {
   }
 };
 
-// };
-
 const mapDispatchToProps = { setLogin, setLogout, getAllNotesForUser };
 
 const mapStateToProps = state => {
@@ -141,4 +139,3 @@ const mapStateToProps = state => {
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(LoginForm);
-// export default LoginForm;

@@ -32,8 +32,8 @@ const Notes = ({ userToken, activeQuestion, userNotes }) => {
   };
 
   const saveNote = async (noteText, activeQuestion) => {
-    // const url = `https://isa-server-401.herokuapp.com`;
-    const url = `http://localhost:3000`;
+    const url = `https://isa-server-401.herokuapp.com`;
+    // const url = `http://localhost:3000`;
 
     console.log('ACTIVE QUESTION TO SAVE NOTE TO: ', activeQuestion);
 
