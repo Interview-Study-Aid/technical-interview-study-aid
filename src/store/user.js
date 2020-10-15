@@ -26,6 +26,7 @@ export default (state = initialState, action) => {
       return { ...state, loggedIn: false, userName: 'Guest' };
 
     case 'GET_NOTES':
+      console.log('hereeeeeee')
       return { ...state, userNotes: payload };
 
     default:
@@ -78,33 +79,45 @@ export function setLogout() {
 export function getAllNotesForUser(token) {
   console.log('GET ALL NOTES FUNCTION', token);
   // const url = 'https://isa-server-401.herokuapp.com';
-  const url = 'https://localhost:3000';
+  // const url = 'http://localhost:3000';
 
-  const jwt = token;
-
-  return async function (dispatch) {
-    const req = {
-      // can we even await this?
-      method: 'get',
-      url: `${url}/notes`,
-      data: {
-        jwt,
-      },
-    };
-
-    console.log('REQQQQQQ?', req);
-
-    const response = await axios(req)
-      .then(data => console.log('NOTE GET RESPONSE>>>>> ', data))
-      .catch(err => console.log(err));
-
-    const notesBack = response;
-
-    console.log('NOTES BACK FOR USER!', notesBack);
-
-    dispatch({
-      type: 'GET_NOTES',
-      payload: response, // notesBack
+  axios({
+    method: 'get',
+    url: `http://localhost:3000/notes/${token}`,
+  })
+    .then(function (response) {
+      console.log(response)
     });
-  };
+
+  // const jwt = token;
+  // console.log(jwt, 'jwt!!!!!!!!!!!!!!!!!!!!!!!!!')
+
+  // return async function (dispatch) {
+  //   const req = {
+  //     // can we even await this?
+  //     method: 'get',
+  //     url: `${url}/notes`,
+  //     data: {
+  //       jwt:token,
+  //     },
+  //   };
+
+  //   console.log('REQQQQQQ?', req);
+
+    // const response = await axios(req)
+    //   .then(data => console.log('NOTE GET RESPONSE>>>>> ', data))
+    //   .catch(err => console.log(err));
+
+    // console.log(response);
+
+    
+    // const notesBack = response;
+
+  //   console.log('NOTES BACK FOR USER!', notesBack);
+
+  //   dispatch({
+  //     type: 'GET_NOTES',
+  //     payload: response, // notesBack
+  //   });
+  // };
 }

@@ -42,6 +42,7 @@ const LoginForm = ({ setLogin, setLogout, isLoggedIn, getAllNotesForUser }) => {
           localStorage.setItem('token', data.data.token);
           let loginData = data.data;
           setLogin(loginData);
+          console.log('lof')
           getAllNotesForUser(loginData.token);
         }
       })
