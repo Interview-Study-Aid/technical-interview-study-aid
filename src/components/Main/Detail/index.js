@@ -31,7 +31,7 @@ const Detail = ({ showModal, questionObject, closeQuestion, isLoggedIn }) => {
 
   const [hideAnswer, setHideAnswer] = useState(true);
   const [hideNotes, setHideNotes] = useState(true);
-  
+
   function toggleAnswer() {
     setHideAnswer(!hideAnswer);
   }
@@ -40,7 +40,7 @@ const Detail = ({ showModal, questionObject, closeQuestion, isLoggedIn }) => {
     setHideNotes(!hideNotes);
   }
 
-  function closeAndReset(){
+  function closeAndReset() {
     closeQuestion();
     setHideAnswer(true);
   }
@@ -50,51 +50,49 @@ const Detail = ({ showModal, questionObject, closeQuestion, isLoggedIn }) => {
   const question = questionObject ? parseQuestion(questionObject).question : '';
   const answer = questionObject ? parseQuestion(questionObject).answer : '';
 
-  if(isLoggedIn){
-
+  if (isLoggedIn) {
     return (
       <Modal
-      show={showModal}
-      onHide={closeAndReset}
-      className={showHideClassName}
+        show={showModal}
+        onHide={closeAndReset}
+        className={showHideClassName}
       >
-      <Modal.Header>
-        <Modal.Title>{question}</Modal.Title>
-      </Modal.Header>
-      <section className="modal-main">
-        <button onClick={toggleAnswer}>View Answer</button>
-        <br />
-        {!hideAnswer && answer}
-        <br />
-        <button onClick={toggleNotes}>View Notes</button>
-        <br />
-        {!hideNotes && <Notes props={questionObject}/>}
-        <br />
-        <button onClick={closeAndReset}>Close</button>
-      </section>
-    </Modal>
-  );
-} else {
-  return (
-    <Modal
-    show={showModal}
-    onHide={closeAndReset}
-    className={showHideClassName}
-    >
-    <Modal.Header>
-      <Modal.Title>{question}</Modal.Title>
-    </Modal.Header>
-    <section className="modal-main">
-      <button onClick={toggleAnswer}>View Answer</button>
-      <br />
-      {!hideAnswer && answer}
-      <br />
-      <button onClick={closeAndReset}>Close</button>
-    </section>
-  </Modal>
-);
-
-}
+        <Modal.Header>
+          <Modal.Title>{question}</Modal.Title>
+        </Modal.Header>
+        <section className="modal-main">
+          <button onClick={toggleAnswer}>View Answer</button>
+          <br />
+          {!hideAnswer && answer}
+          <br />
+          <button onClick={toggleNotes}>View Notes</button>
+          <br />
+          {!hideNotes && <Notes props={questionObject} />}
+          <br />
+          <button onClick={closeAndReset}>Close</button>
+        </section>
+      </Modal>
+    );
+  } else {
+    return (
+      <Modal
+        show={showModal}
+        onHide={closeAndReset}
+        className={showHideClassName}
+      >
+        <Modal.Header>
+          <Modal.Title>{question}</Modal.Title>
+        </Modal.Header>
+        <section className="modal-main">
+          <button onClick={toggleAnswer}>View Answer</button>
+          <br />
+          {!hideAnswer && answer}
+          <br />
+          <button onClick={closeAndReset}>Close</button>
+        </section>
+      </Modal>
+    );
+  }
 };
 
 const mapStateToProps = state => {

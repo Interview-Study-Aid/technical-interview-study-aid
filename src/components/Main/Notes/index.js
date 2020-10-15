@@ -2,11 +2,10 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
-import { Col, InputGroup, FormControl } from 'react-bootstrap';
+// import { Col, InputGroup, FormControl } from 'react-bootstrap';
 import { connect } from 'react-redux';
 
 const Notes = ({ isLoggedIn, username, userToken, questionObject }) => {
-
   // Will probably need to just take in TEXT as props
 
   const [noteText, setNoteText] = useState('');
@@ -22,14 +21,15 @@ const Notes = ({ isLoggedIn, username, userToken, questionObject }) => {
 
   const saveNote = async (noteText, questionObject) => {
     const url = `https://isa-server-401.herokuapp.com`;
-    
-    const note = { questionID: questionObject.id , text: noteText }
+
+    const note = { questionID: questionObject.id, text: noteText };
 
     console.log('NOTE OBJECT???', note);
-    
+
     const data = {
-      userToken, note
-    }
+      userToken,
+      note,
+    };
 
     console.log('NOTE DATA OBJECT TO SEND??', data);
 
@@ -42,21 +42,24 @@ const Notes = ({ isLoggedIn, username, userToken, questionObject }) => {
     //   url: `${url}/addNote`,
     //   data: req
     // })
-    
   };
 
   return (
     <>
       <Form>
-        <Form.Control type="textarea" placeholder="This is your personal notepad!" value={noteText} name="notes" onChange={handleNotesInput}>
-        </Form.Control>
+        <Form.Control
+          type="textarea"
+          placeholder="This is your personal notepad!"
+          value={noteText}
+          name="notes"
+          onChange={handleNotesInput}
+        ></Form.Control>
       </Form>
-      <Button
-      variant="info"
-      onClick={saveNote}
-      >Make Me Save the Notes</Button>
+      <Button variant="info" onClick={saveNote}>
+        Make Me Save the Notes
+      </Button>
     </>
-  )
+  );
 };
 
 const mapStateToProps = state => {
@@ -64,7 +67,7 @@ const mapStateToProps = state => {
     isLoggedIn: state.user.loggedIn,
     username: state.user.userName,
     userToken: state.user.token,
-  }
-}
+  };
+};
 
 export default connect(mapStateToProps)(Notes);

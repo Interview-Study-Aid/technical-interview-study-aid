@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
@@ -58,77 +58,77 @@ const LoginForm = ({ setLogin, setLogout, isLoggedIn }) => {
     setValues(values => ({ ...values, userPassword: e.target.value }));
   };
 
-      if(!isLoggedIn){
-        return (
-          <>
-            <Form>
-              <Form.Row className="align-items-center">
-                <Col xs="auto">
-                  <Form.Label htmlFor="inlineFormInput" srOnly>
-                    Name
-                  </Form.Label>
-                  <Form.Control
-                    className="mb-2"
-                    id="inlineFormInput"
-                    placeholder="Username"
-                    onChange={handleInputChangeName}
-                    />
-                </Col>
-                <Col xs="auto">
-                  <Form.Label htmlFor="inlineFormInputGroup" srOnly>
-                    Username
-                  </Form.Label>
-                  <InputGroup className="mb-2">
-                    <FormControl
-                      id="inlineFormInputGroup"
-                      placeholder="Password"
-                      onChange={handleInputChangePassword}
-                      type="password"
-                      />
-                  </InputGroup>
-                </Col>
-                <Col xs="auto">
-                  <Button 
-                  type="submit" 
-                  className="mb-2" 
-                  onClick={handleSubmit}
-                  variant="secondary"
-                  >
-                    Login
-                  </Button>
-                </Col>
-                <Col xs="auto">
-                  <Button 
-                  type="submit" 
-                  className="mb-2" 
-                  onClick={handleSignup}
-                  variant="outline-secondary"
-                  >
-                    Sign Up
-                  </Button>
-                </Col>
-              </Form.Row>
-            </Form>
-          </>
-        )
-      } else {
-        return (
-          <> 
+  if (!isLoggedIn) {
+    return (
+      <>
+        <Form>
+          <Form.Row className="align-items-center">
             <Col xs="auto">
-              <Button 
-              type="submit" 
-              className="mb-2" 
-              onClick={setLogout}
-              variant="secondary"
+              <Form.Label htmlFor="inlineFormInput" srOnly>
+                Name
+              </Form.Label>
+              <Form.Control
+                className="mb-2"
+                id="inlineFormInput"
+                placeholder="Username"
+                onChange={handleInputChangeName}
+              />
+            </Col>
+            <Col xs="auto">
+              <Form.Label htmlFor="inlineFormInputGroup" srOnly>
+                Username
+              </Form.Label>
+              <InputGroup className="mb-2">
+                <FormControl
+                  id="inlineFormInputGroup"
+                  placeholder="Password"
+                  onChange={handleInputChangePassword}
+                  type="password"
+                />
+              </InputGroup>
+            </Col>
+            <Col xs="auto">
+              <Button
+                type="submit"
+                className="mb-2"
+                onClick={handleSubmit}
+                variant="secondary"
               >
-                Log Out
+                Login
               </Button>
-            </Col>        
-          </>
-        )
-      }   
-    }
-  
+            </Col>
+            <Col xs="auto">
+              <Button
+                type="submit"
+                className="mb-2"
+                onClick={handleSignup}
+                variant="outline-secondary"
+              >
+                Sign Up
+              </Button>
+            </Col>
+          </Form.Row>
+        </Form>
+      </>
+    );
+  } else {
+    return (
+      <>
+        <Col xs="auto">
+          <Button
+            type="submit"
+            className="mb-2"
+            onClick={setLogout}
+            variant="secondary"
+          >
+            Log Out
+          </Button>
+        </Col>
+      </>
+    );
+  }
+};
+
 // };
 
 const mapDispatchToProps = { setLogin, setLogout };
