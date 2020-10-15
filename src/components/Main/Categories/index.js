@@ -23,10 +23,15 @@ const Categories = ({ getCategories, selectCategory, categories, active }) => {
       <h2 className="c_title">Available Categories</h2>
       <ul 
       className="categories"
-      style={{ display: 'flex', flexDirection: 'row' }}>
+      // style={{ display: 'flex', flexDirection: 'row' }}
+      >
         {categories.map(eachCategory => {
           return (
-            <Card className="eachCategory" key={eachCategory}>
+            <Card 
+            className="eachCategory" 
+            key={eachCategory}
+            bg="light"
+            >
               <Card.Body onClick={() => selectCategory(eachCategory)}>
                 {eachCategory}
               </Card.Body>

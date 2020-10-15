@@ -1,7 +1,13 @@
 .q_title {
-  background-color: #1FA896;
+  background-color: #5CABB8;
   color: whitesmoke;
   text-align: center;
+}
+
+.q_ul {
+  display: flex;
+  justify-content: center;
+  // align-content: right;
 }
 
 .eachQuestion {
