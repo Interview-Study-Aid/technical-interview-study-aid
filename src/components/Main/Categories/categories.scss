@@ -6,8 +6,11 @@
 
 .categories {
   display: flex;
+  flex-wrap: wrap;
+  overflow-x: auto;
   flex-direction: row;
-  justify-content: center;
+  justify-content: space-evenly;
+  min-width: fit-content;
 }
 
 .eachCategory {

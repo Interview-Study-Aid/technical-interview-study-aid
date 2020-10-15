@@ -5,7 +5,7 @@ it('should have initial state', () => {
   expect(state.activeCategory).toBe('General');
 });
 
-// it('should be able to switch categories', () => {
-//   const state = reducer(undefined, selectCategory('JavaScript'));
-//   expect(state.activeCategory).toBe('JavaScript');
-// });
+it('should be able to switch categories', () => {
+  const state = reducer(undefined, selectCategory('JavaScript'));
+  expect(state.activeCategory).toBe('JavaScript');
+});

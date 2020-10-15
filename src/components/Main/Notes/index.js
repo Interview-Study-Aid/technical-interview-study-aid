@@ -4,6 +4,7 @@ import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 // import { Col, InputGroup, FormControl } from 'react-bootstrap';
 import { connect } from 'react-redux';
+import '../Detail/detail.scss'
 
 const Notes = ({ userToken, activeQuestion, userNotes }) => {
   // note.questionId, note.note
@@ -49,16 +50,24 @@ const Notes = ({ userToken, activeQuestion, userNotes }) => {
   return (
     <>
       <Form>
-        <Form.Control
+        {/* <Form.Control */}
+        <textarea
           type="textarea"
           placeholder="This is your personal notepad!"
           value={noteText}
           name="notes"
+          rows="5"
+          cols="50"
           onChange={handleNotesInput}
-        ></Form.Control>
+          ></textarea>
+        {/* ></Form.Control> */}
       </Form>
-      <Button variant="info" onClick={() => saveNote(noteText, activeQuestion)}>
-        Make Me Save the Notes
+      <Button 
+      variant="info"
+      className="n_button" 
+      onClick={() => saveNote(noteText, activeQuestion)}
+      >
+        Save Notes
       </Button>
     </>
   );
