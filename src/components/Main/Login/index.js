@@ -22,7 +22,7 @@ const LoginForm = ({ setLogin, setLogout, isLoggedIn }) => {
       },
     })
       .then(data => console.log(data))
-      .then();
+      .catch(err => console.log(err.message));
   };
 
   const handleSubmit = e => {

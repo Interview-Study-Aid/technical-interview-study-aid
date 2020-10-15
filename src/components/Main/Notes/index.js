@@ -20,7 +20,8 @@ const Notes = ({ isLoggedIn, username, userToken, id }) => {
   // How do we SEND something to the back end?
 
   const saveNote = async (noteText, id) => {
-    const url = `https://isa-server-401.herokuapp.com`;
+    // const url = `https://isa-server-401.herokuapp.com`;
+    const url = `http://localhost:3000`;
 
     console.log('QUESTION ID COMIN IN HOT', id);
 
@@ -29,16 +30,42 @@ const Notes = ({ isLoggedIn, username, userToken, id }) => {
     console.log('NOTE OBJECT???', note);
 
     const data = {
-      userToken,
+      jwt: userToken,
       note,
     };
 
     console.log('NOTE DATA OBJECT TO SEND??', data);
 
-    const res = await axios.post(`${url}/addNote`, data);
+    const response = await axios.post(`${url}/addNote`, data);
 
-    console.log('RES???', res);
+    console.log('RES???', response);
   };
+
+  // const saveNote = async (noteText, id) => {
+  //   // const url = `https://isa-server-401.herokuapp.com`;
+  //   const url = `http://localhost:3000`;
+  //   const note = { questionID: id, text: noteText };
+
+  //   axios({
+  //     method: 'post',
+  //     url: `${url}/addNote`,
+  //     data: {
+  //       jwt: userToken,
+  //       note,
+  //     },
+  //   }).then(data => console.log('NOTE RESPONSE FROM SERVER:', data));
+
+  //   // const data = {
+  //   //   jwt: userToken,
+  //   //   note,
+  //   // };
+
+  //   // console.log('NOTE DATA OBJECT TO SEND??', data);
+
+  //   // const response = await axios.post(`${url}/addNote`, data);
+
+  //   // console.log('RES???', response);
+  // };
 
   return (
     <>
