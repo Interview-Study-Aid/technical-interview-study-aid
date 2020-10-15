@@ -1,16 +1,24 @@
 .q_title {
-  background-color: #1FA896;
+  background-color: #5CABB8;
   color: whitesmoke;
   text-align: center;
+}
+
+.q_ul {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  overflow: scroll;
 }
 
 .eachQuestion {
   color: whitesmoke;
   margin: 1vw;
   display: flex;
-  flex-wrap: wrap;
 }
 
 .viewDetailButton {
-
+  margin-top: 1em;
+  margin-bottom: 0;
+  margin-left: 25%;
 }

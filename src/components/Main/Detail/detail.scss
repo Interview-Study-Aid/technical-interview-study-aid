@@ -1,0 +1,43 @@
+.m_title {
+  background-color: #17A2B8;
+  color: whitesmoke;
+  width: 100%;
+  padding-left: 1em;
+  padding-right: 1em;
+}
+
+.modal-main {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.m_a_button {
+  width: fit-content;
+  height: fit-content;
+  margin-top: auto;
+  margin-bottom: auto;
+  margin-left: 1em;
+}
+
+.answer {
+  width: 100%;
+  padding: 3em;
+}
+
+.m_n_button {
+  width: fit-content;
+  height: fit-content;
+  margin-top: auto;
+  margin-bottom: auto;
+  margin-left: 1em;
+}
+
+.notes {
+  width: 100%;
+  padding: 3em;
+}
+
+.n_button {
+float: right;
+}

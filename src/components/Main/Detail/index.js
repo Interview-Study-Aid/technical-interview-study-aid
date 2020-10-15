@@ -9,8 +9,11 @@
 import React, { Children, useState } from 'react';
 import { connect } from 'react-redux';
 import { Modal } from 'react-bootstrap';
+import Button from 'react-bootstrap/Button';
 import { closeQuestion } from '../../../store/questions';
 import Notes from '../Notes';
+import './detail.scss';
+
 
 function parseQuestion(data) {
   let target = data.questionAnswer;
@@ -31,7 +34,7 @@ const Detail = ({ showModal, questionObject, closeQuestion, isLoggedIn }) => {
 
   const [hideAnswer, setHideAnswer] = useState(true);
   const [hideNotes, setHideNotes] = useState(true);
-  
+
   function toggleAnswer() {
     setHideAnswer(!hideAnswer);
   }
@@ -40,9 +43,10 @@ const Detail = ({ showModal, questionObject, closeQuestion, isLoggedIn }) => {
     setHideNotes(!hideNotes);
   }
 
-  function closeAndReset(){
+  function closeAndReset() {
     closeQuestion();
     setHideAnswer(true);
+    setHideNotes(true);
   }
 
   const id = questionObject.id;
@@ -50,51 +54,83 @@ const Detail = ({ showModal, questionObject, closeQuestion, isLoggedIn }) => {
   const question = questionObject ? parseQuestion(questionObject).question : '';
   const answer = questionObject ? parseQuestion(questionObject).answer : '';
 
-  if(isLoggedIn){
-
+  if (isLoggedIn) {
     return (
       <Modal
-      show={showModal}
-      onHide={closeAndReset}
-      className={showHideClassName}
+        show={showModal}
+        onHide={closeAndReset}
+        className={showHideClassName}
       >
-      <Modal.Header>
-        <Modal.Title>{question}</Modal.Title>
-      </Modal.Header>
-      <section className="modal-main">
-        <button onClick={toggleAnswer}>View Answer</button>
-        <br />
-        {!hideAnswer && answer}
-        <br />
-        <button onClick={toggleNotes}>View Notes</button>
-        <br />
-        {!hideNotes && <Notes />}
-        <br />
-        <button onClick={closeAndReset}>Close</button>
-      </section>
-    </Modal>
-  );
-} else {
-  return (
-    <Modal
-    show={showModal}
-    onHide={closeAndReset}
-    className={showHideClassName}
-    >
-    <Modal.Header>
-      <Modal.Title>{question}</Modal.Title>
-    </Modal.Header>
-    <section className="modal-main">
-      <button onClick={toggleAnswer}>View Answer</button>
-      <br />
-      {!hideAnswer && answer}
-      <br />
-      <button onClick={closeAndReset}>Close</button>
-    </section>
-  </Modal>
-);
-
-}
+        <Modal.Header>
+          <Modal.Title
+          className="m_title"
+          >{question}</Modal.Title>
+        </Modal.Header>
+        <section className="modal-main">
+          <Button 
+          onClick={toggleAnswer}
+          className="m_a_button"
+          variant='outline-secondary'
+          >
+            {!hideAnswer ? 'Hide Answer' : 'View Answer'}
+          </Button>
+          <br />
+          <p
+          className='answer'
+          >
+          {!hideAnswer && answer}
+          </p>
+          <br />
+          <Button 
+          onClick={toggleNotes}
+          className="m_n_button"
+          variant='outline-info'
+          >
+            {!hideNotes ? 'Hide Notes' : 'View Notes'}
+          </Button>
+          <br />
+          <p
+          className="notes"
+          >
+          {!hideNotes && <Notes />}
+          </p>
+          <br />
+          {/* <button onClick={closeAndReset}>Close</button> */}
+        </section>
+      </Modal>
+    );
+  } else {
+    return (
+      <Modal
+        show={showModal}
+        onHide={closeAndReset}
+        className={showHideClassName}
+      >
+        <Modal.Header>
+          <Modal.Title
+          className="m_title"
+          >{question}</Modal.Title>
+        </Modal.Header>
+        <section className="modal-main">
+          <Button 
+          onClick={toggleAnswer}
+          variant='outline-secondary'
+          className="m_a_button"
+          >
+          {!hideAnswer ? 'Hide Answer' : 'View Answer'}
+          </Button>
+          <br />
+          <p
+          className='answer'
+          >
+          {!hideAnswer && answer}
+          </p>
+          <br />
+          {/* <button onClick={closeAndReset}>Close</button> */}
+        </section>
+      </Modal>
+    );
+  }
 };
 
 const mapStateToProps = state => {

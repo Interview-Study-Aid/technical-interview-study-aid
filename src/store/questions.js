@@ -15,7 +15,7 @@ const initialState = {
 // ACTIONS
 
 export const selectQuestion = question => {
-  // console.log('PAYLOAD FROM SELECT QUESTION??', question);
+  console.log('PAYLOAD FROM SELECT QUESTION??', question);
   return {
     type: 'SELECT_QUESTION',
     payload: question,

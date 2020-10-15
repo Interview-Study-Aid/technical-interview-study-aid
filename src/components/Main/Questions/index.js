@@ -3,7 +3,7 @@
 // Should render individual questions filtered based on the category chosen
 //    Each question should be clickable/selectable to open a details view modal (https://react-bootstrap.github.io/components/modal/)
 
-import React, { useEffect } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
@@ -31,12 +31,13 @@ const Questions = ({
   return (
     <>
       <h2 className="q_title">
-        {(activeCategory[0].category === undefined) ? 'Please Select a Category' : `${activeCategory[0].category} Questions`}
+        {activeCategory[0].category === undefined
+          ? 'Please Select a Category'
+          : `${activeCategory[0].category} Questions`}
       </h2>
-      <ul style={{ display: 'flex', flexDirection: 'row' }}>
+      <ul className="q_ul" style={{ display: 'flex', flexDirection: 'row' }}>
         {questions.map(eachQuestion => {
           return (
-            // <li key={eachQuestion.id} onClick={() => selectQuestion(eachQuestion)}>{parseQuestion(eachQuestion).question}</li>
             <Card
               className="eachQuestion"
               border="dark"
@@ -48,6 +49,7 @@ const Questions = ({
                 <Card.Title>{parseQuestion(eachQuestion).question}</Card.Title>
                 <Button
                   className="viewDetailButton"
+                  variant="light"
                   onClick={() => selectQuestion(eachQuestion)}
                 >
                   View Details
