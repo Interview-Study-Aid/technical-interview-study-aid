@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, screen } from '@testing-library/react';
+import { render, screen, fireEvent } from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect';
 import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
@@ -11,13 +11,14 @@ import Header from '../components/Header';
 import Footer from '../components/Footer';
 import Categories from '../components/Main/Categories';
 import Questions from '../components/Main/Questions';
+import Detail from '../components/Main/Detail';
 
 describe('Connected Component tests', () => {
   it('should display the user name in the header', async () => {
     const store = mockStore({
       user: {
         userName: 'CoolGuy2002',
-        loggedIn: false,
+        loggedIn: true,
       },
     });
 
@@ -95,5 +96,70 @@ describe('Connected Component tests', () => {
     );
 
     await screen.findByText(/event loops/);
+  });
+
+  it.skip('should correctly render questions', async () => {
+    const store = mockStore({
+      questions: {
+        questions: [
+          {
+            category: 'General',
+            id: '001',
+            questionAnswer:
+              '{"question": "Nothing like a good general question, right?", "answer":""}',
+          },
+        ],
+        activeQuestion: {
+          category: '',
+          id: '',
+          questionAnswer: '{"question": "", "answer":""}',
+        },
+        showModal: false,
+      },
+      categories: {
+        activeCategory: 'General',
+      },
+    });
+
+    render(
+      <Provider store={store}>
+        <Questions />
+      </Provider>
+    );
+
+    // await screen.findByText(/General/);
+    // await screen.findByText(/JavaScript/);
+    // await screen.findByText(/ASP.NET/);
+    const items = await screen.findAllByText(/Nothing/);
+    expect(items.length).toEqual(3);
+  });
+
+  it.skip('should correctly render an active category detail component', async () => {
+    const store = mockStore({
+      categories: {
+        activeCategory: 'JavaScript',
+      },
+
+      questions: {
+        activeQuestion: {
+          category: 'JavaScript',
+          id: '001',
+          questionAnswer:
+            '{"question": "Who loves JavaScript?", "answer":"Everyone!"}',
+        },
+      },
+      user: {
+        loggedIn: false,
+      },
+    });
+
+    render(
+      <Provider store={store}>
+        <Questions />
+      </Provider>
+    );
+
+    await screen.findByText(/loves/);
+    ///
   });
 });
