@@ -75,8 +75,6 @@ describe('async actions for Categories', () => {
     axios.get = jest.fn();
     axios.get.mockResolvedValue({ data });
     await store.dispatch(selectCategory('some category'));
-
-    // return of async actions
     const actualActions = store.getActions();
 
     expect(actualActions.length).toBe(expectedActions.length);

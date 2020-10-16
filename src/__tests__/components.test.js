@@ -8,6 +8,7 @@ const mockStore = configureMockStore(middlewares);
 import { Provider } from 'react-redux';
 
 import Header from '../components/Header';
+import Footer from '../components/Footer';
 
 describe('Connected Component tests', () => {
   it('should display the user name in the header', () => {
@@ -25,5 +26,10 @@ describe('Connected Component tests', () => {
     );
 
     screen.findByText('CoolGuy2002');
+  });
+
+  it('should correctly render the footer', () => {
+    render(<Footer />);
+    screen.findByText('this text is not on the page');
   });
 });

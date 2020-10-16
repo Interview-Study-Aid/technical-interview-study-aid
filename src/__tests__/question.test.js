@@ -76,4 +76,16 @@ describe('async actions for Questions', () => {
     expect(actualActions[0].type).toBe(expectedActions[0].type);
     expect(actualActions[0].payload).toStrictEqual(expectedActions[0].payload);
   });
+
+  it('should close an active question', async () => {
+    const expectedActions = [{ type: 'CLOSE_QUESTION', payload: null }];
+    const store = mockStore();
+
+    await store.dispatch(closeQuestion());
+    const actualActions = store.getActions();
+
+    expect(actualActions.length).toBe(expectedActions.length);
+    expect(actualActions[0].type).toBe(expectedActions[0].type);
+    expect(actualActions[0].payload).toStrictEqual(expectedActions[0].payload);
+  });
 });
