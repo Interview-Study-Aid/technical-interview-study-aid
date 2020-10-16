@@ -2,9 +2,9 @@ import reducer, { selectCategory, getCategories } from '../store/categories';
 import fetchMock from 'fetch-mock';
 import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
-
 const middlewares = [thunk];
 const mockStore = configureMockStore(middlewares);
+import axios from 'axios';
 
 it('should have initial state', () => {
   const state = reducer(undefined, {});
@@ -27,7 +27,9 @@ it('should be able to set initial categories', () => {
   expect(state.categories.length).toEqual(3);
 });
 
-describe('async actions', () => {
+describe('async actions for Categories', () => {
+  jest.mock('axios');
+
   afterEach(() => {
     fetchMock.restore();
   });
@@ -60,5 +62,25 @@ describe('async actions', () => {
     return store.dispatch(selectCategory(category)).then(() => {
       expect(store.getActions()).toEqual(expectedActions);
     });
+  });
+
+  it('should select a category', async () => {
+    const data = {
+      someCategory: 'some details',
+    };
+
+    const expectedActions = [{ type: 'CHANGE_CATEGORY', payload: data }];
+    const store = mockStore();
+
+    axios.get = jest.fn();
+    axios.get.mockResolvedValue({ data });
+    await store.dispatch(selectCategory('some category'));
+
+    // return of async actions
+    const actualActions = store.getActions();
+
+    expect(actualActions.length).toBe(expectedActions.length);
+    expect(actualActions[0].type).toBe(expectedActions[0].type);
+    expect(actualActions[0].payload).toStrictEqual(expectedActions[0].payload);
   });
 });
