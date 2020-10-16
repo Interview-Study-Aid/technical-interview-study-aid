@@ -25,11 +25,13 @@ describe('Connected Component tests', () => {
       </Provider>
     );
 
-    screen.findByText('CoolGuy2002');
+    screen.findByText('lameguy2001');
   });
 
   it('should correctly render the footer', () => {
     render(<Footer />);
-    screen.findByText('this text is not on the page');
+    screen.getByText(
+      '© 2020 Jennifer Chinzi, Kateryna Shydlovska, & Alex Whan'
+    );
   });
 });
