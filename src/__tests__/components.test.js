@@ -11,7 +11,7 @@ import Header from '../components/Header';
 import Footer from '../components/Footer';
 
 describe('Connected Component tests', () => {
-  it('should display the user name in the header', () => {
+  it('should display the user name in the header', async () => {
     const store = mockStore({
       user: {
         userName: 'CoolGuy2002',
@@ -25,13 +25,13 @@ describe('Connected Component tests', () => {
       </Provider>
     );
 
-    screen.findByText('lameguy2001');
+    await screen.findByText(/CoolGuy2002/);
   });
 
-  it('should correctly render the footer', () => {
+  it('should correctly render the footer', async () => {
     render(<Footer />);
-    screen.getByText(
-      '© 2020 Jennifer Chinzi, Kateryna Shydlovska, & Alex Whan'
+    await screen.findByText(
+      /Jennifer Chinzi, Kateryna Shydlovska, & Alex Whan/
     );
   });
 });
