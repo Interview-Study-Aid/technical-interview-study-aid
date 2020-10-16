@@ -27,10 +27,14 @@ it('should be able to clear the active question', () => {
 });
 
 it('should return selectQuestion action', () => {
-  const question = {category: 'JavaScript', id: '1', questionAnswer:'{}' };
+  const question = { category: 'JavaScript', id: '1', questionAnswer: '{}' };
   const action = selectQuestion(question);
-  expect (action.type).toBe('SELECT_QUESTION');
-  expect (action.payload).toStrictEqual({category: 'JavaScript', id: '1', questionAnswer:'{}' });
+  expect(action.type).toBe('SELECT_QUESTION');
+  expect(action.payload).toStrictEqual({
+    category: 'JavaScript',
+    id: '1',
+    questionAnswer: '{}',
+  });
 });
 
 it('should return closeQuestion action', () => {
