@@ -1,0 +1,21 @@
+.c_title {
+  background-color: #3096A6;
+  color: whitesmoke;
+  text-align: center;
+}
+
+.categories {
+  display: flex;
+  flex-wrap: wrap;
+  overflow-x: auto;
+  flex-direction: row;
+  justify-content: space-evenly;
+  min-width: fit-content;
+}
+
+.eachCategory {
+  color: darkcyan;
+  margin: 1vw;
+  width: 8em;
+  text-align: center;
+}
