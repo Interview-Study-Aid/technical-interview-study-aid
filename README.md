@@ -1,10 +1,14 @@
 # Technical Interview Study Aid
 
-## Version: 0.0.2
+## Version: 1.0.0
+
+## [LIVE LINK](https://interview-study-aid.netlify.app/) | [SERVER CODE](https://github.com/Interview-Study-Aid/ISA-server)
 
 ## Overview
 
-Technical interviews are an important (and unavoidable!) part of the process of entering the tech field. This full-stack application makes the preparation process as painless as possible for developers by providing a wealth of resources, all in one place.
+Technical interviews are an important -- and unavoidable! -- part of the process of entering the tech field. This full-stack application makes the preparation process as painless as possible for developers by providing a wealth of resources, all in one place. Users can choose from a variety of questions from popular tech and programming topics, view the answers on command, and log in to save their notes on a problem for future reference as they study.
+
+Built with a React front end and Node/Express backend REST API, powered by DynamoDB.
 
 ## Authors:
 

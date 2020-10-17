@@ -1,8 +1,11 @@
 /* eslint-disable indent */
+import axios from 'axios';
+
 const initialState = {
   loggedIn: false,
   userName: 'Guest',
   token: '',
+  userNotes: [],
 };
 
 export default (state = initialState, action) => {
@@ -10,8 +13,6 @@ export default (state = initialState, action) => {
 
   switch (type) {
     case 'LOGIN':
-      // this is not logging/updating properly
-      console.log('IN TYPE DEF:', type, payload);
       return {
         ...state,
         loggedIn: true,
@@ -22,6 +23,9 @@ export default (state = initialState, action) => {
     case 'LOGOUT':
       return { ...state, loggedIn: false, userName: 'Guest' };
 
+    case 'GET_NOTES':
+      return { ...state, userNotes: payload };
+
     default:
       return state;
   }
@@ -29,8 +33,6 @@ export default (state = initialState, action) => {
 
 // ACTION
 export function setLogin(loginData) {
-  // if verified, emit this
-  console.log('LOGIN DATA???', loginData);
   return {
     type: 'LOGIN',
     payload: loginData,
@@ -38,9 +40,30 @@ export function setLogin(loginData) {
 }
 
 export function setLogout() {
-  // if verified, emit this
   return {
     type: 'LOGOUT',
     payload: null,
+  };
+}
+
+export function getAllNotesForUser(token) {
+  const url = 'https://isa-server-401.herokuapp.com';
+  // const url = 'http://localhost:3000';
+
+  return async function (dispatch) {
+    let responseFromGetNotes;
+
+    await axios({
+      method: 'get',
+      url: `${url}/notes/${token}`,
+    }).then(function (response) {
+      console.log('RESPONSE FROM GET NOTES>>>>>>', response.data);
+      responseFromGetNotes = response.data;
+    });
+
+    dispatch({
+      type: 'GET_NOTES',
+      payload: responseFromGetNotes,
+    });
   };
 }

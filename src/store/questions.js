@@ -2,8 +2,7 @@
 // import axios from 'axios';
 
 const initialState = {
-  questions: [
-  ],
+  questions: [],
   activeQuestion: {
     category: '',
     id: '',
@@ -15,7 +14,6 @@ const initialState = {
 // ACTIONS
 
 export const selectQuestion = question => {
-  // console.log('PAYLOAD FROM SELECT QUESTION??', question);
   return {
     type: 'SELECT_QUESTION',
     payload: question,
