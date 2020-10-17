@@ -2,9 +2,8 @@ import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
-// import { Col, InputGroup, FormControl } from 'react-bootstrap';
 import { connect } from 'react-redux';
-import '../Detail/detail.scss'
+import '../Detail/detail.scss';
 
 const Notes = ({ userToken, activeQuestion, userNotes }) => {
   const [noteText, setNoteText] = useState('');
@@ -66,13 +65,13 @@ const Notes = ({ userToken, activeQuestion, userNotes }) => {
           rows="5"
           cols="50"
           onChange={handleNotesInput}
-          ></textarea>
+        ></textarea>
         {/* ></Form.Control> */}
       </Form>
-      <Button 
-      variant="info"
-      className="n_button" 
-      onClick={() => saveNote(noteText, activeQuestion)}
+      <Button
+        variant="info"
+        className="n_button"
+        onClick={() => saveNote(noteText, activeQuestion)}
       >
         Save Notes
       </Button>

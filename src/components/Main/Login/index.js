@@ -53,7 +53,7 @@ const LoginForm = ({ setLogin, setLogout, isLoggedIn, getAllNotesForUser }) => {
     e.persist();
     // e.preventDefault();
     setValues(values => ({ ...values, userName: e.target.value }));
-    // reset() -- potential placement 
+    // reset() -- potential placement
   };
 
   const handleInputChangePassword = e => {
@@ -117,10 +117,7 @@ const LoginForm = ({ setLogin, setLogout, isLoggedIn, getAllNotesForUser }) => {
   } else {
     return (
       <>
-        <Col 
-        xs="auto"
-        className="signout"
-        >
+        <Col xs="auto" className="signout">
           <Button
             type="submit"
             className="mb-2"
