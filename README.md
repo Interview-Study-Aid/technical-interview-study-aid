@@ -1,5 +1,8 @@
 # Technical Interview Study Aid
 
+![GitHub](https://img.shields.io/github/license/Interview-Study-Aid/technical-interview-study-aid)
+![GitHub package.json version](https://img.shields.io/github/package-json/v/Interview-Study-Aid/technical-interview-study-aid)
+
 ## Version: 1.0.0
 
 ## [LIVE LINK](https://interview-study-aid.netlify.app/) | [SERVER CODE](https://github.com/Interview-Study-Aid/ISA-server)
