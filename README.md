@@ -2,6 +2,7 @@
 
 ![GitHub](https://img.shields.io/github/license/Interview-Study-Aid/technical-interview-study-aid)
 ![GitHub package.json version](https://img.shields.io/github/package-json/v/Interview-Study-Aid/technical-interview-study-aid)
+![GitHub Issues](https://img.shields.io/github/issues/Interview-Study-Aid/technical-interview-study-aid)
 
 ## Version: 1.0.0
 
