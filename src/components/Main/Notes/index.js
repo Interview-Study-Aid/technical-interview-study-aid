@@ -15,12 +15,8 @@ const Notes = ({ userToken, activeQuestion, userNotes }) => {
       note => note.questionId === activeQuestion.id
     );
 
-    console.log('MY SOON-TO-BE NOTE TEXT: ', existingNote);
-
     if (existingNote.length > 0) {
       prevText.current = existingNote[0].note;
-      // setNoteText(myNoteText); // getting infinite re-render here
-      console.log('TEXT???', prevText.current);
       setNoteText(prevText.current);
     }
   }, []);
@@ -33,15 +29,9 @@ const Notes = ({ userToken, activeQuestion, userNotes }) => {
 
   const saveNote = async (noteText, activeQuestion) => {
     const url = `https://isa-server-401.herokuapp.com`;
-    // const url = `http://localhost:3000`;
-
-    console.log('ACTIVE QUESTION TO SAVE NOTE TO: ', activeQuestion);
-
     const rawNotes = { questionId: activeQuestion.id, note: noteText };
     const notes = JSON.stringify(rawNotes);
     const jwt = userToken;
-
-    console.log('NOTES TO SEND TO /addNote ROUTE:', notes, jwt);
 
     axios({
       method: 'post',
