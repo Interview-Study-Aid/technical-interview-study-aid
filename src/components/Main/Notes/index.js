@@ -46,7 +46,6 @@ const Notes = ({ userToken, activeQuestion, userNotes }) => {
   return (
     <>
       <Form>
-        {/* <Form.Control */}
         <textarea
           type="textarea"
           placeholder="This is your personal notepad!"
@@ -56,7 +55,6 @@ const Notes = ({ userToken, activeQuestion, userNotes }) => {
           cols="50"
           onChange={handleNotesInput}
         ></textarea>
-        {/* ></Form.Control> */}
       </Form>
       <Button
         variant="info"
